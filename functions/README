@@ -1,0 +1,25 @@
+----------- Common Functions readme v0.1.2 ------------
+
+This library is intended to have some classes and functions that I consider basic.
+
+Below the main functionality of each class is given.
+   
+   - ArgumentData: basic class that explores the arguments given to an executable. 
+   - DecMinSec: stores an angle in terms of degrees, minutes and seconds. Can represent it in a variety of ways.
+   - Point3D: a 3D cartesian point.
+   - HessianPlane: stores the definition of a plane in terms of normal vector and distance to the origin.
+   - RandomNumberGenerator: uses boost in order to generate random numbers
+   - funcions.cpp: This file has many common purpose methods such as importing/exporting MATLAB vectors and matrices.
+   - RealVector.h (and .cpp): this class extends the funcionality of std::vector<double> by adding vector operations such
+     as sum, substract, multiplication by a scalar number, scalar product of two vectors of any dimension and cross product of two tridimensional vectors, calculate the norm, normalize a vector, and many others.
+   - DegMinSec --> class created in order to work with angles in degrees (useful when dealing with GPS data)
+
+Also, it builds some executables:
+
+   - function_test. Is intended to be the unit test of each class.
+
+The autor does not give any warranty of correct functionality, so please be my beta tester!!
+
+Regards
+
+David Alejo

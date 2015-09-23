@@ -1,0 +1,20 @@
+ChangeLog of function library. v 0.1.3
+
+v 0.1.3
+
+2011-02-20 Added a fromString function of RealVector and a new exec that performs tests in RealVector class.
+           Some minor modifications
+
+v 0.1.2
+
+2011-10-04 Removed the UAVFlightPlan dependencies in order to reduce the necessary libraries. 
+	   Some changes in RandomNumberGenerator: is not a SingleTon anymore. Added an unit test in src/exec/function_test.cpp
+	   UAVFlightPlan has been created as a separate library. 
+
+v 0.1.1
+
+2011-03-10 Added the RealVector class that extends the functionality of std::vector (see README)
+
+v 0.1.0 
+
+2011-03-26 Created the basic library, see README to learn about its contents
