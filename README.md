@@ -25,12 +25,19 @@ in a computer. The installation steps for each library are the usual steps in CM
 This procedure has to be done for each library in the following order:
 
 1- functions --> general purpose functions
+
 2- sparser--> parsing library initially developed by Pablo Soriano
+
 3- simulator --> basic simulation library for a number of UAVs
+
 4- graph --> basic graph library
+
 5- particle_swarm --> basic PSO optimization library
+
 6- resolution --> conflict detection and resolution library based on Evolutionary Optimization
+
 7- UAVFlightPlan --> Function used to automatically generate flight plans for UAVs in some Autopilots format
+
 
 For detailed instructions which could be necessary in order to install each library, please refer to the folders
 of these libraries.
