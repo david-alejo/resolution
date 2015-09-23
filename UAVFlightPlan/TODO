@@ -1,0 +1,14 @@
+10-03-2011
+
+- Conversor between simulation Flight Plans and UAV Navigation flight plans.
+
+08-03-2011
+
+- Develop UAVTrajectory. Ok!
+- Develop UAVFlightPlan and store its info in kml format. Ok!
+
+04-3-2011
+
+- Test Earth Location. Ok!
+- Make Flight Plan of Earth Locations and store them in kml format and in AutoPilot format. Almost... pending to export in xml UAVNavigation format
+

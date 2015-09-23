@@ -1,0 +1,9 @@
+ChangeLog of UAVFlightPlan library. v 0.1.0
+
+v 0.1.1
+
+2012-07-05 Added methods to import a KML file with a sequence of Placemarks with Model geometry. Can export in lat,lon and in relative coordinates
+
+v 0.1.0 
+
+2011-03-26 Created the basic library. It is able to manage UAV Navigation logs & FlightPlans and translate them into KML files.

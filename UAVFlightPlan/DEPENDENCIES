@@ -1,0 +1,7 @@
+----------- UAVFlightPlan dependencies v0.1.0 ------------
+
+- libkml-1.2.0
+- libxml++-1.0 or any version. Make a symbolic link in /usr/include/libkml++ to the folder /usr/include/libkml++-1.0/libkml++
+- Some find directives are necessary in order to make links to some header files of GTKmm C++ interface to GTK+ library. Example:
+
+  /> find -name glibmmconfig.h 2>/dev/null 
