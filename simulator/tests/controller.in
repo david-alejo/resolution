@@ -1,0 +1,6 @@
+speed = 0.5;
+
+flight_plan {
+	waypoint = 0.0 0.0 2.0;
+	waypoint = 10.0 10.0 2.0;
+}

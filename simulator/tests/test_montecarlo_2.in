@@ -1,0 +1,109 @@
+// Test file for the simulator class performing montecarlo simulations of a multiUAV system.
+// It is similarto test_montecarlo_1 but with more wind and different direction
+// Has to be used with the following command:
+
+//  ../build/test_simulator test_montecarlo_2.in --montecarlo 100
+
+
+// One file must have at least one uav block and a T block
+
+// Sample time
+T = 0.2;
+
+debug = true;
+
+// Configuration parameters
+config {
+	debug = true;
+	time_coefficient = 13.0;
+}
+
+// Collision detector data
+collision_detector_type = SiCoDe;
+
+// UAV
+uav {
+	id = First_UAV; // A string that identifies the uav
+	particle_type = ParticleSimple; // The only particle implemented so far.
+	debug = true;
+	
+	model {
+		model_type = ModelSimpleUAVPolarWind; 
+		parameters = 1.5 0.33 0.05 0.3364 1.4680 25.7 62.76 10.0 6.0 0.57 0.5; // alpha_v alpha_theta alpha_h alpha_h_dot v_min v_max
+		initial_conditions = 0 0 50.0 600.0 0.0; // x y v theta h h_dot 
+		T = 0.2;
+		
+	}
+
+	controller {
+		controller_type = ControllerSimpleUAV; 
+		min_wp_dist = 50.0;
+		speed = 52.5;
+		flight_plan {
+			waypoint = 0.0 0.0 600.0;
+			waypoint = 10000.0 10000.0 500.0;
+
+			cruise = 52.5;
+		}
+	}
+	weight = 1.0; // Useless so far.
+	geometry = 4.0 4.0 1.0;
+}
+
+// UAV
+  uav {
+	  id = SecondUAV; // A string that identifies the uav
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+	  debug = true;
+	  
+	  model {
+		  model_type = ModelSimpleUAVPolarWind; 
+		  parameters = 1.5 0.33 0.05 0.3364 1.4680 25.7 62.76 10.0 6.0 0.57 0.5; // alpha_v alpha_theta alpha_h alpha_h_dot v_min v_max
+		  initial_conditions = 0 4000 50 1.78 600 0; // x y v theta h h_dot 
+		  T = 0.2;
+		  
+	  }
+
+	  controller {
+		  controller_type = ControllerSimpleUAV; 
+		  min_wp_dist = 100.0;
+		  speed = 52.5;
+		  flight_plan {
+			  waypoint = 0 4000 600;
+			  waypoint = 4500 4000 600;
+			  waypoint = 7000 10000 600;
+			  cruise = 52.5;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 500 500 100;
+  }
+  
+     // UAV
+  uav {
+	  id = ThirdUAV; // A string that identifies the uav
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+	  debug = true;
+	  
+	  model {
+		  model_type = ModelSimpleUAVPolarWind; 
+		  parameters = 1.5 0.33 0.05 0.3364 1.4680 25.7 62.76 10.0 6.0 0.57 0.5; // alpha_v alpha_theta alpha_h alpha_h_dot v_min v_max
+		  initial_conditions = 2000 6000 50 0 600 0; // x y v theta h h_dot 
+		  T = 0.2;
+		  
+	  }
+
+	  controller {
+		  controller_type = ControllerSimpleUAV; 
+		  min_wp_dist = 100.0;
+		  speed = 52.5;
+		  flight_plan {
+			  waypoint = 2000 6000 600;
+			  waypoint = 5000 4000 600;
+			  waypoint = 7000 10000 600;
+			  cruise = 52.5;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 500 500 100;
+  }

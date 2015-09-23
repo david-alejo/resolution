@@ -1,0 +1,17 @@
+ChangeLog of Simulator 
+
+2015-03-25 Added Particle Filter and two new models (tests pf_?.in)
+
+2012-06-20 Added a new model: ModelSimpleGlider and a new controller ControllerSimpleGlider
+
+2011-10-27 Added possibility of writing the content of Simulator and the other classes into an sparser compatible file.
+
+2011-09-26 Minor fix preventing a leak in ControllerSimple::reset().
+
+2011-07-07 v0.1.2 When a new simulation is called in a existing Simulator instance it now behaves properly. 
+	   Added a new run method that accepts new Flight Plans
+
+2011-06-17 v0.1.1 Added some changes in order to make possible to make the all data to be saved in one file. (see simulator_3.in)
+
+2011-06-02 v0.1.0 First implementation and upload to the repository. Tested the basic functionality with up to 2 UAVs
+                  One model and controller implemented, pending to implement some more.

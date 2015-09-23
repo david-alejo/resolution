@@ -1,0 +1,5 @@
+// First flight plan with 3 WPs with turn
+cruise_speed = 1; // m/s
+waypoint = 2 0 1.30; // m
+waypoint = 2 2 1.10;
+waypoint = 0 0 0.4;

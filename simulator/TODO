@@ -1,0 +1,24 @@
+Init 2011-03-29 
+
+2015-03-20
+
+  - Add the possibility of resampling in PF
+  - More functions on PF (mean and std dev of current state)
+
+2011-06-2
+
+  - Introduce more models ModelSpeedQuad (with speed dynamics) and ModelSimpleUAV (with speed and heading dynamics, and extension in the altitude dynamics) Done (simpleUAV)
+
+  - Test different simulation modes: 
+
+                  - Not to stop the simulation when a collision has been detected. Done
+		  - Actualize the flight plan when the plan is running?? Done
+                  - Modify the flight plan and rerun the simulation. Done
+
+
+2011-05-25
+
+  - Test the Simulator first implementation. Done
+  - Test all load from file methods of all classes (ControllerSimple, ParticleSimple, ModelSimple). Done
+  - End the test_simulator executable. Done
+  - Debug!! Done, the simulatios have been run successfully, pending a minor bug at the end of the simulations. Done

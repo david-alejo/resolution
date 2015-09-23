@@ -1,0 +1,13 @@
+// Particle description file 
+
+model {
+	model_file = model.in;
+	model_type = ModelSimpleQuad; // The only model implemented so far
+}
+
+controller {
+	controller_file = controller.in;
+	controller_type = ControllerSimple; // The only controller implemented so far
+}
+weight = 1.0; // Useless so far.
+geometry = 4.0 4.0 1.0;

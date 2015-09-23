@@ -1,0 +1,18 @@
+// First test file for the simulator class
+// One file must have at least one uav block and a T block
+
+// Sample time
+T = 0.01;
+
+// Configuration parameters
+
+config {
+	debug = true;
+}
+
+// UAV
+uav {
+	id = Example_UAV; // A string that identifies the uav
+	particle_file = particle.in;
+	particle_type = ParticleSimple; // The only particle implemented so far.
+}

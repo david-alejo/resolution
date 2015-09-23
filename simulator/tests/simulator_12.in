@@ -1,0 +1,38 @@
+
+	// Sample time
+	T = 0.1;
+
+	// Configuration parameters
+
+	config {
+// 		debug = true;
+	}
+
+	// Collision detector data
+	collision_detector_type = SiCoDe;
+	
+	// UAV 2
+	uav {
+		id = Second_UAV; // A string that identifies the uav
+		particle_type = ParticleSimple; // The only particle implemented so far.
+	
+		model {
+			model_type = ModelSimpleQuad; // The only model implemented so far
+			parameters = 0.5 0.005 0.5;
+			initial_conditions = 5 10 2.0;
+			T = 0.2;
+		}
+
+		controller {
+			controller_type = ControllerSimple; // The only controller implemented so far
+			speed = 0.5;
+			flight_plan {
+				waypoint = 5 10 2;
+				waypoint = 3.85761 5.57291 2; 
+				waypoint = 5 0 2;
+			}
+		}
+		weight = 1.0; // Useless so far.
+		geometry = 0.85 0.85 1.0;
+	} // End of UAV2
+	

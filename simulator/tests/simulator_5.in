@@ -1,0 +1,54 @@
+// Test file for the simulator class. All data in one file
+// One file must have at least one uav block and a T block
+
+// Sample time
+T = 0.01;
+
+// Configuration parameters
+
+config {
+	debug = true;
+}
+
+// Collision detector data
+//collision_detector_type = SiCoDe;
+
+// UAV
+uav {
+	id = First_UAV; // A string that identifies the uav
+	particle_type = ParticleSimple; // The only particle implemented so far.
+	
+	model {
+		model_type = ModelSimpleGlider; // The only model implemented so far
+		parameters = 20.5 0.5 0.05; // v_ref alpha_theta descending_angle(rad)
+		initial_conditions = 0 0 1000.0 0.0; // x y z theta
+		T = 0.2;
+		updraft {
+		  location = 500 500;
+		  max_height = 1500;
+		  wind_speed = 3; // m/s
+		  radius = 200;
+		}
+
+		updraft {
+		  location = 0 750;
+		  max_height = 1500;
+		  wind_speed = 4;
+		  radius = 200;
+		}
+	}
+
+	controller {
+		controller_type = ControllerSimpleGlider; 
+		speed = 20.5;
+		flight_plan {
+			waypoint = 0.0 0.0 1000.0;
+			waypoint = 1000.0 1000.0 500.0;
+		}
+		altitude_flag = true;
+		z_tolerance = 10.0;
+	}
+	weight = 1.0; // Useless so far.
+	geometry = 4.0 4.0 1.0;
+}
+

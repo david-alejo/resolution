@@ -1,0 +1,54 @@
+// Test file for the simulator class. All data in one file
+// BRIEF: This file is generated to test the ThermalModelTime class
+// One file must have at least one uav block and a T block
+
+// Sample time
+T = 0.2;
+time_coefficient = 3.0;
+
+// Configuration parameters
+
+config {
+	debug = false;
+}
+
+// Collision detector data
+//collision_detector_type = SiCoDe;
+
+// UAV
+uav {
+	id = First_UAV; // A string that identifies the uav
+	particle_type = ParticleSimple; // The only particle implemented so far.
+	
+	model {
+		model_type = ModelSimpleGlider; 
+		parameters = 20.5 0.9 0.05; // v_ref alpha_theta descending_angle(rad)
+		initial_conditions = 0 0 1000.0 0.0; // x y z theta
+		T = 0.2;
+		
+		wind_model {
+			type = Time; // See ThermalModelFactory.cpp to check for the possibilities
+			wind_file = wind; // The first part of the name
+			directory = Dynamic_Model; // File where the wind file is located
+			resolution = 10; // Length of each side of the cell
+			t = 10; // Sample time of the maps
+			max_t = 70; // Maximum time (inclusive)
+		}
+	}
+
+	controller {
+		controller_type = ControllerSimpleGlider; 
+		speed = 20.5;
+		flight_plan {
+			waypoint = 0.0 0.0 600.0;
+			waypoint = 1000.0 1000.0 500.0;
+			waypoint = 1000.0 1000.0 700.0;
+			reach_altitude = 001; // Each number represents whether the UAV has to reach target altitude or not for the corresponding WP
+		}
+		min_wp_dist = 30.0;
+		z_tolerance = 10.0;
+	}
+	weight = 1.0; // Useless so far.
+	geometry = 4.0 4.0 1.0;
+}
+

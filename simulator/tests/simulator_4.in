@@ -1,0 +1,63 @@
+// Test file for the simulator class. All data in one file
+// One file must have at least one uav block and a T block
+
+// Sample time
+T = 0.01;
+
+// Configuration parameters
+
+config {
+	debug = true;
+}
+
+// Collision detector data
+collision_detector_type = SiCoDe;
+
+// UAV
+uav {
+	id = First_UAV; // A string that identifies the uav
+	particle_type = ParticleSimple; // The only particle implemented so far.
+	
+	model {
+		model_type = ModelSimpleQuad; // The only model implemented so far
+		parameters = 0.5 0.005 0.5;
+		initial_conditions = 0 0 2.0;
+		T = 0.2;
+	}
+
+	controller {
+		controller_type = ControllerSimple; // The only controller implemented so far
+		speed = 0.5;
+		flight_plan {
+			waypoint = 0.0 0.0 2.0;
+			waypoint = 10.0 10.0 2.0;
+		}
+	}
+	weight = 1.0; // Useless so far.
+	geometry = 4.0 4.0 1.0;
+}
+
+// UAV 2
+uav {
+	id = Second_UAV; // A string that identifies the uav
+	particle_type = ParticleSimple; // The only particle implemented so far.
+	
+	model {
+		model_type = ModelSimpleQuad; // The only model implemented so far
+		parameters = 0.5 0.005 0.5;
+		initial_conditions = 0 5.0 2.0;
+		T = 0.2;
+	}
+
+	controller {
+		controller_type = ControllerSimple; // The only controller implemented so far
+		speed = 0.5;
+		flight_plan {
+			waypoint = 0.0 5.0 2.0;
+			waypoint = 10.0 7.0 2.0;
+		}
+	}
+	weight = 1.0; // Useless so far.
+	geometry = 4.0 4.0 1.0;
+}
+
