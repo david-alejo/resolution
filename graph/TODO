@@ -1,0 +1,6 @@
+Simple Graph library TODO list:
+
+Jan 2011
+
+  - Add remove edge and vertex methods
+  - Implement other search methods (Breadth first search, etc.)
