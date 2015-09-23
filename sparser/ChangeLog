@@ -1,0 +1,26 @@
+Sparser library v. 0.1.7 (experimental)
+
+2011-10-27 	Added inverse functionality. That is, the ParseBlock class can publish its content via << operator
+		and it is done in a way that is compatible in order to read it again with this library.
+
+2011-05-27  Fixed some more const stuff in ParseProperty
+
+2011-05-25	Fixed some error while loading files in StringUtil. It did not throw exceptions if the file was not found.
+
+2011-05-24 	Fixed some problems with const clauses.
+
+2011-05-23 	Implemented the specialization of vector of double
+
+2011-02-07      Possible segfault in the constructor fixed.
+
+2010-04-08      Revised compatibility with boost 1.40 and gcc-4.4.1  
+
+2009-04-22 	David Alejo. Added the destructors of Checker, ParseBlock and ParseContext 
+						in order to avoid memory leaks.
+						
+2009-04-23	Implemented the copy contructor of ParseBlock and the Clone functions of the Check subclasses.
+						This will prevent double frees and make possible to copy Parseblock and Checker classes.
+						
+2009-04-23	Solved a subtle bug when calling to hasProperty and hasBlocks methods of Parseblock class.
+						There were created some uncomplete map entries that made the destructor crash. It was solved by changing
+						the call to the overloaded [] operator to the find function.

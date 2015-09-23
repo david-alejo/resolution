@@ -1,0 +1,29 @@
+
+
+capture {
+
+	source {
+		identifier = DFG/1394-1 22606861;
+
+		config {
+		//	borightness = 0.51;
+		//	coontrast = 0.721;
+			source = Composite 1;
+		} 
+
+		format {
+			fourcc = UYVY;
+			width = 640;
+			height = 480;	// polosa
+		} 
+
+	}
+
+	compression {
+		format = JPEG;
+		//colorspace = YUV3;
+	} 
+
+	vector = 10 20 30.5 105.1 -3;
+
+} 
