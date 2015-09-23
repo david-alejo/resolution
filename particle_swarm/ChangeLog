@@ -1,0 +1,7 @@
+ChangeLog of Simple Particle Swarm Library v0.1.0
+
+11-06-14 Ended the implementation and the debug phases. Tested a preliminary executable whose goal is to minimize the
+         distance to a vector (5, 5, 5) in a world whose limits are (0, 0, 0) and (10, 10 , 10).
+
+11-06-10 Started the implementation of Particle Swarm Optimizator. In the first design, the goal is to minimize a real
+         function with real vectors as input.
