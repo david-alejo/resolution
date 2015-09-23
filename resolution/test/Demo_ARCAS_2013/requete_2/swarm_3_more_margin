@@ -1,0 +1,142 @@
+// This first test uses ParticleSimple, SiCoDe, ModelSimpleQuad and ControllerSimple
+// in order to test the Particle Swarm Algorithm
+
+algorithm = ParticleSwarm; // Genetic or ParticleSwarm
+
+config {
+// 	debug = true;
+	
+  // Exporting:
+  initial_solution = 0.55 0.78 0.12 0.9 0.3 0.08 0.37 0.24 0.8 0.57 0.2 0.8 0.8 0.36;
+  export_solution = true;
+  solution_filename = sol.m;
+  export_evolution = true;
+  evolution_filename = evo_swarm_2.m;
+  
+  //debug = false;
+  best_individual = best.m;
+  population = 5000;
+  generations = 5;
+  modify_trajectory = true; // If true --> the trajectories are modified and no waypoints are added
+  intermediate_waypoints = 0; // Modifying the trajectory --> no new waypoints are necessary
+  waypoint_dimension = 0; // Will not modify the position of the intermediate waypoints
+  time_exploration = true; // Will modify the ETA To the intermediate and final waypoints
+  custom_evolution = false;
+  initializer_type = Random;
+  export_trajectories = true;
+  trajectory_filename = traj.m;
+  solution_filename = sol.m;
+  export_solution = true;
+  export_catec = catec;
+  
+  bounds {
+	  upper = 10.0 10.0 10.0 10.0;
+	  lower = 0.0 0.0 0.0 0.0;
+	  speed = 2.0 2.0 2.0 2.0;
+  }
+  cost_type = speed;
+  cost {
+	  distance = 1.0;
+	  collision_penalty = 100.0;
+	  speed_factor = 1.0;
+  }
+  geometry_expansion = 0.2; // First expands the geometry when resolving and returns to the original value when checking
+}
+
+simulator {
+  
+  // Sample time
+  T = 0.3;
+
+  // Configuration parameters
+
+  config {
+// 		debug = true;
+  }
+
+  // Collision detector data
+  collision_detector_type = SiCoDe;
+
+  // UAV 1
+  uav {
+	  id = First_UAV; // A string that identifies the uav
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+  
+	  model {
+		  model_type = ModelQuadCatec; // The only model implemented so far
+		  parameters = 1.0 0.5 1.0 0.07 1.2; // alpha (gamma, v), max_h_dot, v_min, v_max)
+		  initial_conditions = 3.34 4.27 0.693 0 0.5; // x y h phi(yaw) v
+		  T = 0.2;
+	  }
+
+	  controller {
+		  controller_type = ControllerQuadCatec; // The only controller implemented so far
+		  speed = 0.5;
+		  flight_plan {
+			  waypoint = 5 10 2;
+			  waypoint = 3.85761 5.57291 2; 
+			  waypoint = 5 0 2;
+			  laas_file = traj_1_wp_complete;
+			  cruise_speed = 0.3;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 1.2 1.2 0.4;
+  } // End of UAV1
+  
+  // UAV 2
+  uav {
+	  id = Second_UAV; // A string that identifies the uav
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+  
+	  model {
+		  model_type = ModelQuadCatec; // The only model implemented so far
+		  parameters = 1.0 0.5 1.0 0.07 1.2; // alpha (gamma, v), max_h_dot, v_min, v_max)
+		  initial_conditions = 6.14  6.02 0.89 0 0; // x y h phi(yaw) v
+		  T = 0.2;
+
+	  }
+
+	  controller {
+		  controller_type = ControllerQuadCatec; // The only controller implemented so far
+		  speed = 0.5;
+		  flight_plan {
+			  waypoint = 5 10 2;
+			  waypoint = 3.85761 5.57291 2; 
+			  waypoint = 5 0 2;
+			  laas_file = traj_2_wp_complete_mod_diff_altitude;
+			  cruise_speed = 0.3;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 1.2 1.2 0.5;
+  } // End of UAV2
+  
+    // UAV 3
+  uav {
+	  id = Third_UAV; // A string that identifies the uav
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+  
+	  model {
+		  model_type = ModelQuadCatec; // The only model implemented so far
+		  parameters = 1.0 0.5 1.0 0.07 1.2; // alpha (gamma, v), max_h_dot, v_min, v_max)
+		  initial_conditions = 8 9.28 0.54 0 0; // x y h phi(yaw) v
+		  T = 0.2;
+
+	  }
+
+	  controller {
+		  controller_type = ControllerQuadCatec; // The only controller implemented so far
+		  speed = 0.5;
+		  flight_plan {
+			  waypoint = 5 10 2;
+			  laas_file = traj_3_wp_complete_mod_diff_altitude_2;
+			  cruise_speed = 0.3;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 1.2 1.2 0.4;
+  } // End of UAV2
+  
+}// End of simulator block
+

@@ -1,0 +1,90 @@
+// First swarm tests
+
+// test {
+// 	test_file = swarm_2;
+// 	output_file = swarm_2_out.m;
+// 	repeat = 10;
+// 	different_names = false;
+// }
+
+test {
+	test_file = fire_2;
+	output_file = fire_2_out.m;
+	repeat = 10;
+	different_names = false;
+}
+
+// test {
+// 	test_file = swarm_4;
+// 	output_file = swarm_4.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = swarm_5;
+// 	output_file = swarm_5.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = swarm_6;
+// 	output_file = swarm_6.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = swarm_7;
+// 	output_file = swarm_7.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = swarm_8;
+// 	output_file = swarm_8.out;
+// 	repeat = 100;
+// }
+// 
+// // Now the genetic tests
+// 
+// test {
+// 	test_file = gen_2;
+// 	output_file = gen_2.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = gen_3;
+// 	output_file = gen_3.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = gen_4;
+// 	output_file = gen_4.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = gen_5;
+// 	output_file = gen_5.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = gen_6;
+// 	output_file = gen_6.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = gen_7;
+// 	output_file = gen_7.out;
+// 	repeat = 100;
+// }
+// 
+// test {
+// 	test_file = gen_8;
+// 	output_file = gen_8.out;
+// 	repeat = 100;
+// }
+// 

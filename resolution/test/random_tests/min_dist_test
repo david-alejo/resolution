@@ -1,0 +1,31 @@
+// First swarm tests
+
+
+
+test {
+	test_file = 2_uavs/swarm_;
+	output_file = swarm_2_mindist.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 3_uavs/swarm_;
+	output_file = swarm_3_mindist.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 4_uavs/swarm_;
+	output_file = swarm_4_mindist.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 5_uavs/swarm_;
+	output_file = swarm_5_mindist.out;
+	repeat = 200;
+	different_names = true;
+}

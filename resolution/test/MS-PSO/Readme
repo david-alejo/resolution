@@ -1,0 +1,10 @@
+The ICUAS 2015 study includes:
+
+One Intermediate Waypoint:
+
+The results with one intermediate waypoint are swarm_?.m; gen_?.m and ms_swarm3d_?.m
+
+More intermediate Ways:
+
+The results with one intermediate waypoint are swarm?_?.m; gen?_?.m and ms_swarm3d?_?.m
+Where the first ? is the number of ways.

@@ -1,0 +1,179 @@
+algorithm = ParticleSwarm;
+config {
+	altitude_levels = false;
+	altitude_step = 1;
+	cost_type = adaptative;
+	debug = false;
+	evolution_filename = evo.m;
+	export_evolution = false;
+	export_solution = false;
+	export_trajectory = false;
+	generations = 100;
+	initializer_type = Random;
+	intermediate_waypoints = 1;
+	phi0 = 0.9;
+	population = 100;
+	r0 = 0.1;
+	search_ratio = 1;
+	solution_filename = solution.m;
+	trajectory_filename = ;
+	waypoint_dimension = 2;
+	bounds {
+		lower = 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+		speed = 20 20 20 20 20 20 20 20 20 20 20 20 20 20;
+		upper = 20 20 20 20 20 20 20 20 20 20 20 20 20 20;
+	}
+	cost {
+		collision_penalty = 1000;
+		distance = 1;
+	}
+}
+simulator {
+	collision_detector_type = SiCoDe;
+	T = 0.2;
+	config {
+		collision_stop = true;
+		debug = false;
+		max_cont = 10000;
+	}
+	uav {
+		geometry = 1 1 1;
+		id = First_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerSimple;
+			speed = 0.5;
+			flight_plan {
+				waypoint = 0 4 2;
+				waypoint = 20 3 2;
+			}
+		}
+		model {
+			initial_conditions = 0 4 2;
+			model_type = ModelSimpleQuad;
+			parameters = 0.5 0.005 0.5;
+			T = 0.2;
+		}
+	}
+	uav {
+		geometry = 1 1 1;
+		id = Second_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerSimple;
+			speed = 0.5;
+			flight_plan {
+				waypoint = 16 0 2;
+				waypoint = 0 8 2;
+			}
+		}
+		model {
+			initial_conditions = 16 0 2;
+			model_type = ModelSimpleQuad;
+			parameters = 0.5 0.005 0.5;
+			T = 0.2;
+		}
+	}
+	uav {
+		geometry = 1 1 1;
+		id = Third_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerSimple;
+			speed = 0.5;
+			flight_plan {
+				waypoint = 20 20 2;
+				waypoint = 20 12 2;
+			}
+		}
+		model {
+			initial_conditions = 20 20 2;
+			model_type = ModelSimpleQuad;
+			parameters = 0.5 0.005 0.5;
+			T = 0.2;
+		}
+	}
+	uav {
+		geometry = 1 1 1;
+		id = Fourth_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerSimple;
+			speed = 0.5;
+			flight_plan {
+				waypoint = 3 20 2;
+				waypoint = 4 0 2;
+			}
+		}
+		model {
+			initial_conditions = 3 20 2;
+			model_type = ModelSimpleQuad;
+			parameters = 0.5 0.005 0.5;
+			T = 0.2;
+		}
+	}
+	uav {
+		geometry = 1 1 1;
+		id = Fifth_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerSimple;
+			speed = 0.5;
+			flight_plan {
+				waypoint = 0 17 2;
+				waypoint = 7 20 2;
+			}
+		}
+		model {
+			initial_conditions = 0 17 2;
+			model_type = ModelSimpleQuad;
+			parameters = 0.5 0.005 0.5;
+			T = 0.2;
+		}
+	}
+	uav {
+		geometry = 1 1 1;
+		id = Sixth_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerSimple;
+			speed = 0.5;
+			flight_plan {
+				waypoint = 20 12 2;
+				waypoint = 16 20 2;
+			}
+		}
+		model {
+			initial_conditions = 20 12 2;
+			model_type = ModelSimpleQuad;
+			parameters = 0.5 0.005 0.5;
+			T = 0.2;
+		}
+	}
+	uav {
+		geometry = 1 1 1;
+		id = Seventh_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerSimple;
+			speed = 0.5;
+			flight_plan {
+				waypoint = 13 0 2;
+				waypoint = 20 19 2;
+			}
+		}
+		model {
+			initial_conditions = 13 0 2;
+			model_type = ModelSimpleQuad;
+			parameters = 0.5 0.005 0.5;
+			T = 0.2;
+		}
+	}
+}

@@ -1,0 +1,53 @@
+// First swarm3d tests
+
+
+test {
+	test_file = 2_uavs/ms-swarm3d4_;
+	output_file = ms-swarm3d4_2.out;
+	repeat = 200;
+	different_names = true;
+}
+
+
+test {
+	test_file = 3_uavs/ms-swarm3d4_;
+	output_file = ms-swarm3d4_3.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 4_uavs/ms-swarm3d4_;
+	output_file = ms-swarm3d4_4.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 5_uavs/ms-swarm3d4_;
+	output_file = ms-swarm3d4_5.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 6_uavs/ms-swarm3d4_;
+	output_file = ms-swarm3d4_6.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 7_uavs/ms-swarm3d4_;
+	output_file = ms-swarm3d4_7.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 8_uavs/ms-swarm3d4_;
+	output_file = ms-swarm3d4_8.out;
+	repeat = 200;
+	different_names = true;
+}
+

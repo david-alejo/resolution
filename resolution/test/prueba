@@ -1,0 +1,86 @@
+algorithm = ParticleSwarm;
+config {
+	altitude_levels = false;
+	altitude_step = 1;
+	cost_type = no_sim;
+	debug = false;
+	evolution_filename = evo.m;
+	export_evolution = false;
+	export_solution = true;
+	export_trajectories = true;
+	generations = 100;
+	initializer_type = Deterministic;
+	intermediate_waypoints = 1;
+	phi0 = 0.9;
+	population = 100;
+	r0 = 0.1;
+	search_ratio = 1;
+	solution_filename = sol.m;
+	speed_factor = 20;
+	time_exploration = true;
+	time_exploration_type = 1;
+	trajectory_filename = traj.m;
+	waypoint_dimension = 2;
+	bounds {
+		lower = 0 0 0 0;
+		speed = 10 10 10 10;
+		upper = 10 10 10 10;
+	}
+	cost {
+		collision_penalty = 100;
+		distance = 1;
+	}
+}
+simulator {
+	collision_detector_type = SiCoDe;
+	T = 0.2;
+	config {
+		collision_stop = true;
+		debug = false;
+		max_cont = 10000;
+		max_time = true;
+		time_coefficient = 1.2;
+	}
+	uav {
+		geometry = 1.2 1.2 1;
+		id = First_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuad;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 0.5;
+				waypoint = 10 10 2;
+				waypoint = 0 4 2;
+			}
+		}
+		model {
+			initial_conditions = 10 10 2 1.3734 0.5;
+			model_type = ModelQuad;
+			parameters = 0.4 0.5 0.1 0.3 0.3 2;
+			T = 0.2;
+		}
+	}
+	uav {
+		geometry = 1.2 1.2 1;
+		id = Second_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuad;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 0.5;
+				waypoint = 0 8 2;
+				waypoint = 9 10 2;
+			}
+		}
+		model {
+			initial_conditions = 0 8 2 1.32582 0.5;
+			model_type = ModelQuad;
+			parameters = 0.4 0.5 0.1 0.3 0.3 2;
+			T = 0.2;
+		}
+	}
+}

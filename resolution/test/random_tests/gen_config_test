@@ -1,0 +1,29 @@
+// First swarm tests
+
+test {
+	test_file = 2_uavs/genetics_;
+	output_file = gen_2_5.out;
+	repeat = 50;
+	different_names = true;
+}
+
+test {
+	test_file = 2_uavs/genetics3_;
+	output_file = gen_2_3.out;
+	repeat = 50;
+	different_names = true;
+}
+
+test {
+	test_file = 2_uavs/genetics05_;
+	output_file = gen_2_05.out;
+	repeat = 50;
+	different_names = true;
+}
+
+test {
+	test_file = 2_uavs/genetics_one_;
+	output_file = gen_2_one.out;
+	repeat = 50;
+	different_names = true;
+}

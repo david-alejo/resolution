@@ -1,0 +1,104 @@
+// This first test uses ParticleSimple, SiCoDe, ModelSimpleQuad and ControllerSimple
+// in order to test the Particle Swarm Algorithm
+
+algorithm = ParticleSwarm; // Genetic or ParticleSwarm
+
+config {
+// 	debug = true;
+	
+	// Exporting:
+	export_solution = true;
+	solution_filename = sol.m;
+	export_evolution = true;
+	evolution_filename = evo_swarm_2.m;
+	
+	//debug = false;
+	population = 100;
+	generations = 100;
+	intermediate_waypoints = 1;
+	waypoint_dimension = 2;
+	custom_evolution = false;
+	initializer_type = Deterministic;
+	
+	bounds {
+		upper = 10.0 10.0 10.0 10.0;
+		lower = 0.0 0.0 0.0 0.0;
+		speed = 2.0 2.0 2.0 2.0;
+	}
+	
+	cost {
+		distance = 1.0;
+		collision_penalty = 100.0;
+
+	}
+}
+
+
+	
+
+
+simulator {
+	
+	// Sample time
+	T = 0.2;
+
+	// Configuration parameters
+
+	config {
+// 		debug = true;
+	}
+
+	// Collision detector data
+	collision_detector_type = SiCoDe;
+
+	// UAV
+	uav {
+		id = First_UAV; // A string that identifies the uav
+		particle_type = ParticleSimple; // The only particle implemented so far.
+	
+		model {
+			model_type = ModelSimpleQuad; // The only model implemented so far
+			parameters = 0.5 0.005 0.5;
+			initial_conditions = 5.0 0 2.0;
+			T = 0.2;
+		}
+
+		controller {
+			controller_type = ControllerSimple; // The only controller implemented so far
+			speed = 0.5;
+			flight_plan {
+				waypoint = 5.0 0.0 2.0;
+				waypoint = 5.0 10.0 2.0;
+				cruise_speed = 0.5;
+			}
+		}
+		weight = 1.0; // Useless so far.
+		geometry = 1.0 1.0 1.0;
+	} // End of UAV 1
+
+	// UAV 2
+	uav {
+		id = Second_UAV; // A string that identifies the uav
+		particle_type = ParticleSimple; // The only particle implemented so far.
+	
+		model {
+			model_type = ModelSimpleQuad; // The only model implemented so far
+			parameters = 0.5 0.005 0.5;
+			initial_conditions = 0 5.0 2.0;
+			T = 0.2;
+		}
+
+		controller {
+			controller_type = ControllerSimple; // The only controller implemented so far
+			speed = 0.5;
+			flight_plan {
+				waypoint = 0.0 5.0 2.0;
+				waypoint = 10.0 5.0 2.0;
+				cruise_speed = 0.5;
+			}
+		}
+		weight = 1.0; // Useless so far.
+		geometry = 1.0 1.0 1.0;
+	} // End of UAV2
+}// End of simulator block
+

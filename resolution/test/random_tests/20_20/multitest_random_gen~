@@ -1,0 +1,51 @@
+// First geneticstests
+
+test {
+	test_file = 2_uavs/genetics_ok_;
+	output_file = gen_2_all.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 3_uavs/genetics_ok_;
+	output_file = gen_3_all.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 4_uavs/genetics_ok_;
+	output_file = gen_4_all.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 5_uavs/genetics_ok_;
+	output_file = gen_5_all.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 6_uavs/genetics_ok_;
+	output_file = gen_6_all.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 7_uavs/genetics_ok_;
+	output_file = gen_7_all.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+ 	test_file = 8_uavs/genetics_ok_;
+ 	output_file = gen_8_all.out;
+ 	repeat = 200;
+ 	different_names = true;
+}
+

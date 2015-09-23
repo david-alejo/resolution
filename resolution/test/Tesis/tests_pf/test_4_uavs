@@ -1,0 +1,152 @@
+algorithm = Genetic; // Genetic or ParticleSwarm
+
+config {
+	// Exporting:
+	export_solution = true;
+	solution_filename = sol_gen.m;
+	//export_evolution = true;
+	//evolution_filename = evo_gen_2.m;
+	
+	//debug = true;
+	population = 100;
+	generations = 5;
+	intermediate_waypoints = 1;
+	waypoint_dimension = 2;
+	custom_evolution = true;
+	initializer_type = Random;
+	mutation_probability = 0.1;
+	mutation_deviation = 2.5;
+	crossover_probability = 0.9;
+	crossover_type = OnePoint;
+
+	cost {
+		distance = 1.0;
+		collision_penalty = 100000.0;
+	}
+	
+	bounds {
+	  upper = 10000 10000 10000 10000 10000 10000 10000 10000;
+	  lower = 0 0 0 0 0 0 0 0;
+	}
+}
+
+simulator {
+  // Sample time
+	T = 0.5;
+	//debug = true;
+	
+	// Collision detector data
+	collision_detector_type = SiCoDe;
+    uav {
+	  id = First_UAV; // A string that identifies the uav (controlled)
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+	  debug = true;
+	  
+	  model {
+		  model_type = ModelSimpleUAVPolarWind; 
+		  parameters = 1.5 0.33 0.05 0.3364 1.4680 25.7 62.76 5.0 2.0 0.0 0.5; // alpha_v alpha_theta alpha_h alpha_h_dot v_min v_max
+		  initial_conditions = 0 0 600 50 0.78 0; // x y h v theta h_dot 
+		  T = 1.0;
+	  }
+
+	  controller {
+		  controller_type = ControllerSimpleUAV; 
+		  min_wp_dist = 100.0;
+		  speed = 52.5;
+		  flight_plan {
+			  waypoint = 0 0 600;
+			  waypoint = 10000 10000 600;
+			  cruise = 52.5;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 500 500 100;
+  }
+
+  // UAV
+  uav {
+	  id = SecondUAV; // A string that identifies the uav
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+	  debug = true;
+	  
+	  model {
+		  model_type = ModelSimpleUAVPolarWind; 
+		  parameters = 1.5 0.33 0.05 0.3364 1.4680 25.7 62.76 5.0 2.0 0.0 0.5; // alpha_v alpha_theta alpha_h alpha_h_dot v_min v_max
+		  initial_conditions = 0 4000 600 50 0 0; // x y h v theta h_dot 
+		  T = 1.0;
+		  
+	  }
+
+	  controller {
+		  controller_type = ControllerSimpleUAV; 
+		  min_wp_dist = 100.0;
+		  speed = 52.5;
+		  flight_plan {
+			  waypoint = 0 4000 600;
+			  waypoint = 3500 1500 600;
+			  waypoint = 7000 10000 600;
+			  cruise = 52.5;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 500 500 100;
+  }
+  
+   // UAV
+  uav {
+	  id = ThirdUAV; // A string that identifies the uav
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+	  debug = true;
+	  
+	  model {
+		  model_type = ModelSimpleUAVPolarWind; 
+		  parameters = 1.5 0.33 0.05 0.3364 1.4680 25.7 62.76 5.0 2.0 0.0 0.5; // alpha_v alpha_theta alpha_h alpha_h_dot v_min v_max
+		  initial_conditions = 2000 6000 600 50 0 0; // x y v theta h h_dot 
+		  T = 1.0;
+		  
+	  }
+
+	  controller {
+		  controller_type = ControllerSimpleUAV; 
+		  min_wp_dist = 100.0;
+		  speed = 52.5;
+		  flight_plan {
+			  waypoint = 2000 6000 600;
+			  waypoint = 5000 6000 600;
+			  waypoint = 10000 3000 600;
+			  cruise = 52.5;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 500 500 100;
+  }
+  
+   // UAV
+  uav {
+	  id = FourthUAV; // A string that identifies the uav
+	  particle_type = ParticleSimple; // The only particle implemented so far.
+	  debug = true;
+	  
+	  model {
+		  model_type = ModelSimpleUAVPolarWind; 
+		  parameters = 1.5 0.33 0.05 0.3364 1.4680 25.7 62.76 5.0 2.0 3.8 0.5; // alpha_v alpha_theta alpha_h alpha_h_dot v_min v_max
+		  initial_conditions = 8000 10000 600 50 -1.78 0; // x y h v theta h_dot 
+		  T = 1.0;
+		  
+	  }
+
+	  controller {
+		  controller_type = ControllerSimpleUAV; 
+		  min_wp_dist = 100.0;
+		  speed = 52.5;
+		  flight_plan {
+			  waypoint = 8000 10000 600;
+			  waypoint = 7000 7000 600;
+			  waypoint = 10000 6000 600;
+			  cruise = 52.5;
+		  }
+	  }
+	  weight = 1.0; // Useless so far.
+	  geometry = 500 500 100;
+  }
+}

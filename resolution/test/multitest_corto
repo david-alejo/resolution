@@ -1,0 +1,52 @@
+// First swarm tests
+
+test {
+	test_file = swarm_2;
+	output_file = swarm_2.out;
+	repeat = 1;
+}
+
+// test {
+// 	test_file = swarm_3;
+// 	output_file = swarm_3.out;
+// 	repeat = 50;
+// }
+
+// test {
+// 	test_file = swarm_4;
+// 	output_file = swarm_4.out;
+// 	repeat = 50;
+// }
+
+// test {
+// 	test_file = swarm_5;
+// 	output_file = swarm_5.out;
+// 	repeat = 50;
+// }
+
+// Now the genetic tests
+
+test {
+	test_file = gen_2;
+	output_file = gen_2.out;
+	repeat = 1;
+}
+
+// test {
+// 	test_file = gen_3;
+// 	output_file = gen_3.out;
+// 	repeat = 50;
+// }
+
+// test {
+// 	test_file = gen_4;
+// 	output_file = gen_4.out;
+// 	repeat = 50;
+// }
+
+// test {
+// 	test_file = gen_5;
+// 	output_file = gen_5.out;
+// 	repeat = 50;
+// }
+

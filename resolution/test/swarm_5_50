@@ -1,0 +1,165 @@
+// This first test uses ParticleSimple, SiCoDe, ModelSimpleQuad and ControllerSimple
+// in order to test the Particle Swarm Algorithm
+
+algorithm = ParticleSwarm; // Genetic or ParticleSwarm
+
+config {
+	//debug = false;
+	population = 100;
+	generations = 2;
+	intermediate_waypoints = 1;
+	waypoint_dimension = 2;
+	initializer_type = Deterministic;
+	
+	bounds {
+		upper = 50.0 50.0 50.0 50.0 50.0 50.0 50.0 50.0 50.0 50.0;
+		lower = 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0;
+		speed = 10.0 10.0 10.0 10.0 10.0 10.0 10.0 10.0 10.0 10.0;
+	}
+	
+	cost {
+		distance = 1.0;
+		collision_penalty = 100.0;
+	}
+}
+
+
+	
+
+
+simulator {
+	
+	// Sample time
+	T = 0.01;
+
+	// Configuration parameters
+
+	config {
+// 		debug = true;
+	}
+
+	// Collision detector data
+	collision_detector_type = SiCoDe;
+
+	// UAV 1. Vertical. Starts (5, 0, 2)
+	uav {
+		id = First_UAV; // A string that identifies the uav
+		particle_type = ParticleSimple; // The only particle implemented so far.
+	
+		model {
+			model_type = ModelSimpleQuad; // The only model implemented so far
+			parameters = 0.5 0.005 0.5;
+			initial_conditions = 5.0 0.0 2.0;
+			T = 0.2;
+		}
+
+		controller {
+			controller_type = ControllerSimple; // The only controller implemented so far
+			speed = 0.5;
+			flight_plan {
+				waypoint = 5.0 0.0 2.0;
+				waypoint = 5.0 10.0 2.0;
+			}
+		}
+		weight = 1.0; // Useless so far.
+		geometry = 1.0 1.0 1.0;
+	} // End of UAV 1
+
+	// UAV 2. Horizontal starts (0, 5 , 2)
+	uav {
+		id = Second_UAV; // A string that identifies the uav
+		particle_type = ParticleSimple; // The only particle implemented so far.
+	
+		model {
+			model_type = ModelSimpleQuad; // The only model implemented so far
+			parameters = 0.5 0.005 0.5;
+			initial_conditions = 0.0 5.0 2.0;
+			T = 0.2;
+		}
+
+		controller {
+			controller_type = ControllerSimple; // The only controller implemented so far
+			speed = 0.5;
+			flight_plan {
+				waypoint = 0.0 5.0 2.0;
+				waypoint = 10.0 5.0 2.0;
+			}
+		}
+		weight = 1.0; // Useless so far.
+		geometry = 1.0 1.0 1.0;
+	} // End of UAV2
+	
+	// UAV 3. Vertical. Start (5, 10 , 0)
+	uav {
+		id = Third_UAV; // A string that identifies the uav
+		particle_type = ParticleSimple; // The only particle implemented so far.
+	
+		model {
+			model_type = ModelSimpleQuad; // The only model implemented so far
+			parameters = 0.5 0.005 0.5;
+			initial_conditions = 5.0 10.0 2.0;
+			T = 0.2;
+		}
+
+		controller {
+			controller_type = ControllerSimple; // The only controller implemented so far
+			speed = 0.5;
+			flight_plan {
+				waypoint = 5.0 10.0 2.0;
+				waypoint = 5.0 0.0 2.0;
+			}
+		}
+		weight = 1.0; // Useless so far.
+		geometry = 1.0 1.0 1.0;
+	} // End of UAV 3
+	
+	// UAV 4. Horizontal. Starts in 10, 5, 2
+	uav {
+		id = Third_UAV; // A string that identifies the uav
+		particle_type = ParticleSimple; // The only particle implemented so far.
+	
+		model {
+			model_type = ModelSimpleQuad; // The only model implemented so far
+			parameters = 0.5 0.005 0.5;
+			initial_conditions = 10.0 5.0 2.0;
+			T = 0.2;
+		}
+
+		controller {
+			controller_type = ControllerSimple; // The only controller implemented so far
+			speed = 0.5;
+			flight_plan {
+				waypoint = 10.0 5.0 2.0;
+				waypoint = 0.0 5.0 2.0;
+			}
+		}
+		weight = 1.0; // Useless so far.
+		geometry = 1.0 1.0 1.0;
+	} // End of UAV 4
+	
+	// UAV 5. Oblique --> starts in 0, 0, 2
+	uav {
+		id = Fifth_UAV; // A string that identifies the uav
+		particle_type = ParticleSimple; // The only particle implemented so far.
+	
+		model {
+			model_type = ModelSimpleQuad; // The only model implemented so far
+			parameters = 0.5 0.005 0.5;
+			initial_conditions = 0.0 0.0 2.0;
+			T = 0.2;
+		}
+
+		controller {
+			controller_type = ControllerSimple; // The only controller implemented so far
+			speed = 0.5;
+			flight_plan {
+				waypoint = 0.0 0.0 2.0;
+				waypoint = 10.0 10.0 2.0;
+			}
+		}
+		weight = 1.0; // Useless so far.
+		geometry = 1.0 1.0 1.0;
+	} // End of UAV 5
+	
+}// End of simulator block
+

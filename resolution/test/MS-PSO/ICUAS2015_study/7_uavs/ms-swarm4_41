@@ -1,0 +1,198 @@
+algorithm = ParticleSwarm;
+config {
+	altitude_levels = false;
+	altitude_step = 1;
+	cost_type = manoeuvre;
+	debug = false;
+	double_geometry = 2 2 1;
+	evolution_filename = evo.m;
+	export_evolution = false;
+	export_solution = false;
+	export_trajectories = false;
+	generations = 100;
+	geometry_expansion = 0.2;
+	inertia_weight = 1;
+	initializer_type = Random;
+	intermediate_waypoints = 4;
+	manoeuvre_selection = true;
+	max_course = 0.7;
+	max_z = 2;
+	min_z = 2;
+	phi0 = 0.9;
+	population = 100;
+	r0 = 0.1;
+	search_ratio = 1;
+	solution_filename = sol.m;
+	speed_factor = 20;
+	time_exploration = false;
+	time_exploration_type = 1;
+	trajectory_filename = traj.m;
+	waypoint_dimension = 2;
+	bounds {
+		lower = 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+		speed = 10 10 10 10 10 10 10 10 10 10 10 10 10 10;
+		upper = 10 10 10 10 10 10 10 10 10 10 10 10 10 10;
+	}
+	cost {
+		collision_penalty = 100;
+		distance = 1;
+	}
+}
+simulator {
+	collision_detector_type = SiCoDe;
+	T = 0.1;
+	config {
+		collision_stop = false;
+		debug = false;
+		max_cont = 10000;
+		max_time = true;
+		time_coefficient = 1.2;
+	}
+	uav {
+		geometry = 1.2 1.2 0.5;
+		id = First_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuadCatec;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 1;
+				waypoint = 3 0 2;
+				waypoint = 0 5 2;
+			}
+		}
+		model {
+			initial_conditions = 3 0 2 1.63344 0;
+			model_type = ModelQuadCatec;
+			parameters = 1 0.5 1 0.1 1.9;
+			T = 0.1;
+		}
+	}
+	uav {
+		geometry = 1.2 1.2 0.5;
+		id = Second_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuadCatec;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 1;
+				waypoint = 10 4 2;
+				waypoint = 6 10 2;
+			}
+		}
+		model {
+			initial_conditions = 10 4 2 2.56701 0;
+			model_type = ModelQuadCatec;
+			parameters = 1 0.5 1 0.1 1.9;
+			T = 0.1;
+		}
+	}
+	uav {
+		geometry = 1.2 1.2 0.5;
+		id = Third_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuadCatec;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 1;
+				waypoint = 0 2 2;
+				waypoint = 6 0 2;
+			}
+		}
+		model {
+			initial_conditions = 0 2 2 -0.856419 0;
+			model_type = ModelQuadCatec;
+			parameters = 1 0.5 1 0.1 1.9;
+			T = 0.1;
+		}
+	}
+	uav {
+		geometry = 1.2 1.2 0.5;
+		id = Fourth_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuadCatec;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 1;
+				waypoint = 0 9 2;
+				waypoint = 10 10 2;
+			}
+		}
+		model {
+			initial_conditions = 0 9 2 -0.668154 0;
+			model_type = ModelQuadCatec;
+			parameters = 1 0.5 1 0.1 1.9;
+			T = 0.1;
+		}
+	}
+	uav {
+		geometry = 1.2 1.2 0.5;
+		id = Fifth_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuadCatec;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 1;
+				waypoint = 5 10 2;
+				waypoint = 10 4 2;
+			}
+		}
+		model {
+			initial_conditions = 5 10 2 -1.90381 0;
+			model_type = ModelQuadCatec;
+			parameters = 1 0.5 1 0.1 1.9;
+			T = 0.1;
+		}
+	}
+	uav {
+		geometry = 1.2 1.2 0.5;
+		id = Sixth_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuadCatec;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 1;
+				waypoint = 10 9 2;
+				waypoint = 0 9 2;
+			}
+		}
+		model {
+			initial_conditions = 10 9 2 -3.05812 0;
+			model_type = ModelQuadCatec;
+			parameters = 1 0.5 1 0.1 1.9;
+			T = 0.1;
+		}
+	}
+	uav {
+		geometry = 1.2 1.2 0.5;
+		id = Seventh_UAV;
+		particle_type = ParticleSimple;
+		weight = 1;
+		controller {
+			controller_type = ControllerQuadCatec;
+			min_wp_dist = 0.5;
+			flight_plan {
+				cruise_speed = 1;
+				waypoint = 0 5 2;
+				waypoint = 10 0 2;
+			}
+		}
+		model {
+			initial_conditions = 0 5 2 0.146991 0;
+			model_type = ModelQuadCatec;
+			parameters = 1 0.5 1 0.1 1.9;
+			T = 0.1;
+		}
+	}
+}

@@ -1,0 +1,6 @@
+ChangeLog of Conflict Resolution Library v0.1.0
+
+11-11-16 Added changes in order to customize the genetic behaviour.
+         Ended the implementation of the swarm random problem generator. 
+11-09-26 Bug of several simulation does not checked. Solved some memory leaks.
+11-08-30 Ended the implementation of two conflict resolution methods: Particle Swarm and Genetics. Pending to debug an error while performing several simulations.

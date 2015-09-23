@@ -1,0 +1,9 @@
+#! /bin/bash
+#./muchos_tests.sh 2 8 ~/resolution/ 200 swarm_
+
+# ./copia_genetics.sh $1 $2 200 swarm_ genetics_
+# ./copia_tests.sh $1 $2 200 swarm_ swarmadap_
+# ./copia_tests.sh $1 $2 200 genetics_ geneticsadap_
+  
+  ~/resolution/build/multitest multitest_random
+  ~/resolution/build/multitest multitest_random_gen

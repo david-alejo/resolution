@@ -1,0 +1,51 @@
+// First swarm tests
+
+// test {
+// 	test_file = 2_uavs/swarm_;
+// 	output_file = swarm_2.out;
+// 	repeat = 200;
+// 	different_names = true;
+// }
+// 
+// test {
+// 	test_file = 3_uavs/swarm_;
+// 	output_file = swarm_3.out;
+// 	repeat = 200;
+// 	different_names = true;
+// }
+// 
+// test {
+// 	test_file = 4_uavs/swarm_;
+// 	output_file = swarm_4.out;
+// 	repeat = 200;
+// 	different_names = true;
+// }
+// 
+// test {
+// 	test_file = 5_uavs/swarm_;
+// 	output_file = swarm_5.out;
+// 	repeat = 200;
+// 	different_names = true;
+// }
+
+test {
+	test_file = 6_uavs/swarm_;
+	output_file = swarm_6.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 7_uavs/swarm_;
+	output_file = swarm_7.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+ 	test_file = 8_uavs/swarm_;
+ 	output_file = swarm_8.out;
+ 	repeat = 200;
+ 	different_names = true;
+}
+

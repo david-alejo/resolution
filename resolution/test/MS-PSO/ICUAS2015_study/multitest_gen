@@ -1,0 +1,53 @@
+// First swarm tests
+
+
+test {
+	test_file = 2_uavs/gen_;
+	output_file = gen_2.out;
+	repeat = 200;
+	different_names = true;
+}
+
+
+test {
+	test_file = 3_uavs/gen_;
+	output_file = gen_3.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 4_uavs/gen_;
+	output_file = gen_4.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 5_uavs/gen_;
+	output_file = gen_5.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 6_uavs/gen_;
+	output_file = gen_6.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 7_uavs/gen_;
+	output_file = gen_7.out;
+	repeat = 200;
+	different_names = true;
+}
+
+test {
+	test_file = 8_uavs/gen_;
+	output_file = gen_8.out;
+	repeat = 200;
+	different_names = true;
+}
+
