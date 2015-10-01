@@ -491,7 +491,7 @@ vector<Point3D> FlightPlan::getReferenceTrajectory(double radius, double ascendi
 	// There is at least one waypoint left --> check for turns
 	
 	d2 = at(i + 1) - at(i);
-	alpha = (M_PI - fabs(d1.getHeadingTo(d2))) * sign(d1.getHeadingTo(d2));
+	alpha = (M_PI - fabs(d1.getDeltaHeading(d2))) * sign(d1.getDeltaHeading(d2));
       } 
       
       // TODO: implement the circumference arc
@@ -535,7 +535,7 @@ vector<Point3D> FlightPlan::getReferenceTrajectory(double radius, double ascendi
 	Point3D center = aux + radius_vector;
 	double inc_head = delta_head;
 	double phi = (-radius_vector).getHeading();
-	for (;inc_head < fabs(d1.getHeadingTo(d2)) - delta_head;inc_head += delta_head) {
+	for (;inc_head < fabs(d1.getDeltaHeading(d2)) - delta_head;inc_head += delta_head) {
 	  aux.x = center.x + radius_effective * cos(phi + inc_head * sign(alpha));
 	  aux.y = center.y + radius_effective * sin(phi + inc_head * sign(alpha));
 	  aux.z += shift.z;

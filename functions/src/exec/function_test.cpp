@@ -23,7 +23,13 @@ int main (int argc, char **argv) {
 		
 		cout << "Making Point3D test.\n";
 		Point3D p(0.72, -1.47, 0.7);
+		Point3D p1(3, 1, 0.7);
+		Point3D p2(-3, -1, 0.7);
 		cout << "Heading " << p.toString() << " = " << p.getHeading() << endl;
+		cout << "Heading from " << p1.toString() << " to ";
+		cout << p2.toString() << " = " << p1.getHeadingTo(p2) << endl;
+		cout << "Delta Heading from " << p1.toString() << " to ";
+		cout << p2.toString() << " = " << p1.getDeltaHeading(p2) << endl;
 	}
 	
 	if (args.isOption("HessianPlane")) {

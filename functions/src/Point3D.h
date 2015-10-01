@@ -132,8 +132,13 @@ class Point3D{
 		}
 		
 		//! @return The increment in the course angle (2D)
-		inline double getHeadingTo(const Point3D &p) const {
+		inline double getDeltaHeading(const Point3D &p) {
 		  return reduceAngle(p.getHeading() - this->getHeading());
+		}
+		
+		//! @return The increment in the course angle (2D)
+		inline double getHeadingTo(const Point3D &p) const {
+		  return (p - *this).getHeading();
 		}
 		
 		inline double getHeading() const {
