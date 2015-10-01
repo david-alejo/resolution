@@ -50,3 +50,8 @@ Entries
 Repository
 Root
 Tag
+
+# Testing stuff
+bog.dat
+*.mutlab*
+traj*.m
