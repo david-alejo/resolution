@@ -31,40 +31,36 @@ namespace particle_swarm {
 	
 ParticleSwarm::ParticleSwarm(int population, const RealVector& upper, const RealVector& lower, const RealVector& speed,  boost::function1< double, RealVector& >& evaluator, bool debug, double r0, double phi0, double inertia_weight)
 {
-	// Default parameters:
-	current_iteration = 0;
-	this->r0 = r0;
-	this-> phi0 = phi0;
-	this->upper_bounds = upper;
-	this->lower_bounds = lower;
-	this->evaluator = evaluator;
-	this->speed_bounds = speed;
-	this->debug = debug;
-	this->inertia_weight = inertia_weight;
-	evaluation_counter++;
-	
-	gen = new RandomNumberGenerator;
-	
-	
-	// Explore!!
-	randomPopulation(population);
-// 	explore(iterations);
-	
-	save_evolution = false;
+  // Default parameters:
+  current_iteration = 0;
+  this->r0 = r0;
+  this-> phi0 = phi0;
+  this->upper_bounds = upper;
+  this->lower_bounds = lower;
+  this->evaluator = evaluator;
+  this->speed_bounds = speed;
+  this->debug = debug;
+  this->inertia_weight = inertia_weight;
+  evaluation_counter++;
+  
+  // Initialize population
+  randomPopulation(population);
+  
+  save_evolution = false;
 }
 
 void ParticleSwarm::explore(int iterations)
 {
-	for (int i = 0; i < iterations; i++) {
-		oneStep();
-	}
+  for (int i = 0; i < iterations; i++) {
+    oneStep();
+  }
 }
 
 void ParticleSwarm::oneStep()
 {
   vector<functions::RealVector> v;
   for (unsigned int j = 0; j < particles.size(); j++) {			
-    particles.at(j).iterate(best.getPosition(), r0, phi0, *gen, inertia_weight);
+    particles.at(j).iterate(best.getPosition(), r0, phi0, inertia_weight);
     evaluation_counter++;
     // Checker whether there exists a new best or not
     if (particles.at(j).getCost() < best.getCost()) {
@@ -85,64 +81,55 @@ void ParticleSwarm::oneStep()
 
 void ParticleSwarm::randomPopulation(int size)
 {
-	particles.clear();
-	
-	if (gen == NULL) {
-	  cerr << "ParticleSwarm::randomPopulation --> Unexpectedly, random number generator has not been initialized.\n";
-	  return;
-	}
-// 	randomize();
-	
-	for (int i = 0; i < size; i++) {
-		RealVector v, speed;
-		for (int j = 0; j < lower_bounds.size(); j++) {
-			double length = upper_bounds.at(j) - lower_bounds.at(j);
-			
-			v.push_back(lower_bounds.at(j) +  gen->rnd01() * length);
-			// Random speed
-			
-			length = 2 * speed_bounds.at(j);
-			speed.push_back(gen->rnd01() * length - speed_bounds.at(j));
-		}
-		SwarmParticle p(v, speed, lower_bounds, upper_bounds, speed_bounds, evaluator);
-		evaluation_counter++;
-		
-		if (debug) {
-			cout << "Created Particle: " << p.toString() << "\n";
-		}
-		particles.push_back(p);
-		
-		if (i == 0) {
-			best = p;
-		} else {
-			if (best.getCost() > p.getCost()) {
-				best = p;
-			}
-		}
-	}
+  particles.clear();
+  
+  for (int i = 0; i < size; i++) {
+    RealVector v, speed;
+    for (int j = 0; j < lower_bounds.size(); j++) {
+      // Random position
+      v.push_back(RandomNumberGenerator::getRandomNumber(lower_bounds.at(j), upper_bounds.at(j)));
+      // Random speed
+      speed.push_back(RandomNumberGenerator::getRandomNumber(-speed_bounds.at(j), speed_bounds.at(j)));
+    }
+    SwarmParticle p(v, speed, lower_bounds, upper_bounds, speed_bounds, evaluator);
+    evaluation_counter++;
+    
+    if (debug) {
+      cout << "Created Particle: " << p.toString() << "\n";
+    }
+    particles.push_back(p);
+    
+    if (i == 0) {
+	    best = p;
+    } else {
+      if (best.getCost() > p.getCost()) {
+	best = p;
+      }
+    }
+  }
 }
 
 std::string ParticleSwarm::toString() const
 {
-	ostringstream os;
-	
-	os << "ParticleSwarm::toString --> Lowest cost: " << best.getCost() << "\t";
-	os << "Best position: " << best.getPosition().toString() << endl;
-	os << "Bounds: " << lower_bounds.toString() << "\t" << upper_bounds.toString() << endl;
-	os << "Number of evaluations so far: " << evaluation_counter << endl;
-	
-	return os.str();
+  ostringstream os;
+  
+  os << "ParticleSwarm::toString --> Lowest cost: " << best.getCost() << "\t";
+  os << "Best position: " << best.getPosition().toString() << endl;
+  os << "Bounds: " << lower_bounds.toString() << "\t" << upper_bounds.toString() << endl;
+  os << "Number of evaluations so far: " << evaluation_counter << endl;
+  
+  return os.str();
 }
 
 std::string ParticleSwarm::populationToString() const
 {
-	ostringstream os;
-	
-	for (unsigned int i = 0; i < particles.size(); i++) {
-		os << particles.at(i).toString() << endl;
-	}
-	
-	return os.str();
+  ostringstream os;
+  
+  for (unsigned int i = 0; i < particles.size(); i++) {
+    os << particles.at(i).toString() << endl;
+  }
+  
+  return os.str();
 }
 
 ParticleSwarm::~ParticleSwarm()
@@ -152,8 +139,6 @@ ParticleSwarm::~ParticleSwarm()
 
 void ParticleSwarm::dispose()
 {
-  delete gen;
-  gen = NULL;
   evolution.clear();
 }
 

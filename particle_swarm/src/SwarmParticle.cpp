@@ -34,73 +34,73 @@ SwarmParticle::SwarmParticle() {
 	
 SwarmParticle::SwarmParticle(RealVector& data, RealVector& initial_speed, RealVector& lower_bounds, RealVector& upper_bounds, RealVector& up_speed, const boost::function1< double, RealVector& > &evaluator)
 {
-	this->position = data;
-	this->speed = initial_speed;
-	this->evaluator = evaluator;
-	this->lower_bounds = lower_bounds;
-	this->upper_bounds = upper_bounds;
-	this->speed_bound = up_speed;
-	init();
-	evaluate();
-	best_cost = cost;
+  this->position = data;
+  this->speed = initial_speed;
+  this->evaluator = evaluator;
+  this->lower_bounds = lower_bounds;
+  this->upper_bounds = upper_bounds;
+  this->speed_bound = up_speed;
+  init();
+  evaluate();
+  best_cost = cost;
 }
 
 	
-void SwarmParticle::iterate(const RealVector& global_best_position, double r0, double phi0, RandomNumberGenerator &gen, double inertia_weight)
+void SwarmParticle::iterate(const RealVector& global_best_position, double r0, double phi0, double inertia_weight)
 {
-	// Actualize the position
-	position = position + speed; 
-	
-	// And then the speed
-	RealVector ran1(position.size(), true);
-	RealVector ran2(position.size(), true);
+  // Actualize the position
+  position = position + speed; 
+  
+  // And then the speed
+  RealVector ran1(position.size(), true);
+  RealVector ran2(position.size(), true);
 
-	speed = speed * inertia_weight  + ( (global_best_position - position).componentProduct(ran1) * r0 +
-				(best_position - position).componentProduct(ran2) * phi0 );
+  speed = speed * inertia_weight  + ( (global_best_position - position).componentProduct(ran1) * r0 +
+			  (best_position - position).componentProduct(ran2) * phi0 );
 
 
-	// Correct the possible violations of the bounds
-	correctBounds();
-	evaluate();
+  // Correct the possible violations of the bounds
+  correctBounds();
+  evaluate();
 }
 
 	
 void SwarmParticle::evaluate()
 {
-	cost = evaluator(this->position);
-	if (cost < best_cost) {
-		best_cost = cost;
-		best_position = position;
-	}
+  cost = evaluator(this->position);
+  if (cost < best_cost) {
+    best_cost = cost;
+    best_position = position;
+  }
 }
 
 void SwarmParticle::correctBounds()
 {
-	for (unsigned int i = 0; i < position.size(); i++) {
-		position[i] = minimum(upper_bounds.at(i), position.at(i));
-		position[i] = maximum(lower_bounds.at(i), position.at(i));
-		speed[i] = minimum(speed_bound.at(i), speed.at(i));
-		speed[i] = maximum(-speed_bound.at(i), speed.at(i));
-	}
+  for (unsigned int i = 0; i < position.size(); i++) {
+    position[i] = minimum(upper_bounds.at(i), position.at(i));
+    position[i] = maximum(lower_bounds.at(i), position.at(i));
+    speed[i] = minimum(speed_bound.at(i), speed.at(i));
+    speed[i] = maximum(-speed_bound.at(i), speed.at(i));
+  }
 }
 
 string SwarmParticle::toString() const
 {
-	ostringstream os;
-	
-	os << "Position: " << position.toString() << "\t";
-	os << "Speed: " << speed.toString() << "\t";
-	os << "Cost: " << cost << "\t";
-	os << "Best cost: " << best_cost << "\t";
-	
-	return os.str();
+  ostringstream os;
+  
+  os << "Position: " << position.toString() << "\t";
+  os << "Speed: " << speed.toString() << "\t";
+  os << "Cost: " << cost << "\t";
+  os << "Best cost: " << best_cost << "\t";
+  
+  return os.str();
 }
 
 void SwarmParticle::init()
 {
-	cost = 1e30;
-	best_cost = 1e30;
-	best_position = position;
+  cost = 1e30;
+  best_cost = 1e30;
+  best_position = position;
 }
 
 

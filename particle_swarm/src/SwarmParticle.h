@@ -31,31 +31,31 @@ namespace particle_swarm {
 //! @brief This class represents an abstract particle. The method evaluate calls a boost function
 class SwarmParticle
 {
-	public:
-		SwarmParticle();
-		
-		SwarmParticle(functions::RealVector& data, functions::RealVector& initial_speed, 
-						 functions::RealVector& upper_bounds, functions::RealVector& lower_bounds, 
-						 functions::RealVector& up_speed, 
-						 const boost::function1< double, functions::RealVector& > &evaluator);
-		
-		//! @brief Performs a iteration of the particle
-		//! @param best_position The global best position achieved so far
-		void iterate(const functions::RealVector &global_best_position, double r0, double phi0, 
-			     functions::RandomNumberGenerator &gen, double inertia_weight);
-		
-		//! @brief Evaluates the function
-		void evaluate(); 
-		
-		//! @brief Cost getter
-		inline double getCost() const {
-			return cost;
-		}
-		
-		//! @brief Cost setter
-		inline void setCost(double new_cost) {
-			cost = new_cost;
-		}
+  public:
+    SwarmParticle();
+    
+    SwarmParticle(functions::RealVector& data, functions::RealVector& initial_speed, 
+		  functions::RealVector& upper_bounds, functions::RealVector& lower_bounds, 
+		  functions::RealVector& up_speed, 
+		  const boost::function1< double, functions::RealVector& > &evaluator);
+    
+    //! @brief Performs a iteration of the particle
+    //! @param best_position The global best position achieved so far
+    void iterate(const functions::RealVector &global_best_position, double r0, double phi0, 
+		  double inertia_weight);
+    
+    //! @brief Evaluates the function
+    void evaluate(); 
+    
+    //! @brief Cost getter
+    inline double getCost() const {
+	    return cost;
+    }
+    
+    //! @brief Cost setter
+    inline void setCost(double new_cost) {
+      cost = new_cost;
+    }
     inline functions::RealVector getPosition() const { return position; };
     
     inline bool setPosition(const functions::RealVector &v) {
@@ -69,22 +69,22 @@ class SwarmParticle
 		
 		std::string toString() const;
 		
-	protected:
-		double cost; // Minimum cost
-		double best_cost; // Minimum cost achieved by the particle
-		
-		functions::RealVector position; // Current position
-		functions::RealVector best_position; // Stores the best position of the particle so far
-		functions::RealVector speed; // Current speed
-		functions::RealVector upper_bounds, lower_bounds; // Restrictions in the population
-		functions::RealVector speed_bound;
-		
-		boost::function1<double, functions::RealVector &> evaluator;
-		
-		void correctBounds();
-		
-		void init();
-private:
+  protected:
+    double cost; // Minimum cost
+    double best_cost; // Minimum cost achieved by the particle
+    
+    functions::RealVector position; // Current position
+    functions::RealVector best_position; // Stores the best position of the particle so far
+    functions::RealVector speed; // Current speed
+    functions::RealVector upper_bounds, lower_bounds; // Restrictions in the population
+    functions::RealVector speed_bound;
+    
+    boost::function1<double, functions::RealVector &> evaluator;
+    
+    void correctBounds();
+    
+    void init();
+  private:
     functions::RealVector inertia_weight;
 };
 
