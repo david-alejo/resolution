@@ -22,7 +22,7 @@ close all;
 %  setLabelStyle('Number of UAVs', 'Execution time after 100 iterations (s)');
 
 % Time against iterations [parametrized with n_uavs]
-color=['b' 'm' 'g' 'k' 'y' 'r'];
+color=['b' 'm' 'g' 'k' 'y' 'r' 'b--' 'm--' 'g--' 'k--' 'y--' 'r--'];
 
 figure;
 aux2getMedian = cell(length(data), 1);
