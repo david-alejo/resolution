@@ -743,30 +743,10 @@ double CRAlgorithm::calculateManoeuvreObjective(const functions::RealVector& vec
   vector<FlightPlan> fps = getFlightPlan(vec);
   for (unsigned int i = 0, cont_uav = 0; i < n_uavs; i++) {
     FlightPlan &fp = fps.at(i);
-    if (conf.manoeuvre_selection) {
-      if (controlled_UAVs.size() <= i || controlled_UAVs.at(i)) {
-	index = getManouvreSelectionIndex(cont_uav);
-	cont_uav++;
-	
-	switch (getManoeuvreType(vec.at(index))) {
-	  case SPEED:
-	    cost += abs(initial_plans.at(i).getETA(initial_plans.at(i).size() - 1) - fp.getETA(fp.size() - 1))*initial_plans.at(i).getCruiseSpeed();
-// 	    cout << "CRAlgorithm::calculateManoeuvreObjective --> ETA difference: " << abs(initial_plans.at(i).getETA(initial_plans.at(i).size() - 1) - fp.getETA(fp.size() - 1))<< endl;
-	    break;
-	  case COURSE:
-	    cost += fp.distance() - initial_plans.at(i).distance();
-	    break;
-	    
-	  case LEVEL:
-	    cost += (fp.distance() - initial_plans.at(i).distance()) * conf.speed_factor;
-	    break;
-	}
-      }
-    }  else {
-      // For default, get the increment of the flight plan in meters
-      cost += fp.distance() - initial_plans.at(i).distance();
-    }
-  }
+    cost += abs(initial_plans.at(i).getETA(initial_plans.at(i).size() - 1) - fp.getETA(fp.size() - 1))*initial_plans.at(i).getCruiseSpeed();
+    cost += (fp.distance() - initial_plans.at(i).distance());
+  } // end for
+  // Check for collisions (without simulating)
   if (!FlightPlanChecker::checkFlightPlans(fps, sim)) {
     if (config->debug) {
 //       cout << "CRAlgorithm::calculateManoeuvreObjective --> adding penalty: " << conf.collision_penalty << endl;
@@ -1341,7 +1321,11 @@ int CRAlgorithm::getProblemDimension() const
   } else {
     ret = getProblemDimensionWithoutTimeExploration();
     if (config.time_exploration) {
-      ret += howManyControlledUAVs() * (config.intermediate_waypoints + 1);
+      if (config.time_exploration_type == INDEPENDENT_VELOCITY) {
+	ret += howManyControlledUAVs() * (config.intermediate_waypoints + 1);
+      } else {
+	ret += howManyControlledUAVs() * config.intermediate_waypoints;
+      }
     }
   }
   
