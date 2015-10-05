@@ -2,7 +2,7 @@
 Conflict Resolution classes developed by David Alejo during the course of his phD Thesis
 "Planning and Coordination on Systems of multiple UAVs"
 
-This repository contains all libraries which are necessary tu run the tests performed during 
+This repository contains all libraries which are necessary to run the tests performed during 
 my Thesis in chapters 3 and 4.
 
 The contents are divided into several libraries, which are listed here in the same order that need to be installed 
