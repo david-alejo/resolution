@@ -157,7 +157,8 @@ CRAlgorithmStatistics CRFireworks::execute()
       // For saving relevant evolution data
       vector<EvolutionData> ev_data;
       RealVector curr_best = RealVector(fireworks[min_pos], dimension);
-      for (iter = 1;iter < c.generations;iter++)
+      bool end_time = false;
+      for (iter = 1;iter < c.generations && !end_time;iter++)
       {
 	EvolutionData current;
 	
@@ -325,8 +326,25 @@ CRAlgorithmStatistics CRFireworks::execute()
 	// is in the first position of the vector)
 	curr_best = RealVector(fireworks[0], dimension);
 	min = fitnesses[0];
-      }
+	
+	// See if the time has expired
+	gettimeofday(&t2, NULL);
+	if (c.max_time > 0.0 && functions::calculateLapseTime(t1, t2) > c.max_time) {
+	  end_time = true;
+	}
+      } // end of the for of the iterations
 
+      // Get the results of the last iteration
+      EvolutionData current;
+	
+      current.cost = min;
+      gettimeofday(&t2, NULL);
+      current.t = functions::calculateLapseTime(t1, t2);
+      current.plan = getFlightPlan(curr_best);
+      updateDeltaETA(current);
+      ev_data.push_back(current);
+      
+      
       double rs = fitnesses[0];
 
 //       if (x != NULL)
@@ -351,7 +369,7 @@ CRAlgorithmStatistics CRFireworks::execute()
       
 //       cout << algorithm.toString() << endl;
       // Calculate spended time and show it
-      gettimeofday(&t2,NULL);
+//       gettimeofday(&t2,NULL);
       cout << "CRFireworks::run --> Spended time = " << functions::showTime(t1,t2) << endl;
       cout << "Minimum cost: " << rs << "\t Evaluations: " << evaluations << endl;
       stat.setEvaluations(evaluations);

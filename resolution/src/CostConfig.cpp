@@ -38,6 +38,13 @@ void CostConfig::init(ParseBlock& block)
     // Sampling parameters
     population = block("population").as<int>();
     generations = block("generations").as<int>();
+    if (block.hasProperty("max_time")) {
+      max_time = block("max_time").as<double>();
+    } else {
+      max_time = -1.0;
+    }
+    
+    
     waypoint_dimension = block("waypoint_dimension").as<int>();
     intermediate_waypoints = block("intermediate_waypoints").as<int>();
     if (block.hasProperty("altitude_levels")) {
@@ -147,6 +154,7 @@ void CostConfig::init()
 	AlgorithmConfig::init();
 	population = 0;
 	generations = 0;
+	max_time = -1.0;
 	waypoint_dimension = 2;
 	intermediate_waypoints = 1;
 	altitude_levels = false;
@@ -230,6 +238,8 @@ ParseBlock* CostConfig::toBlock() const
     // Sampling parameters
     ret->setProperty("population", numberToString(population));
     ret->setProperty("generations", numberToString(generations));
+    ret->setProperty("max_time", numberToString(max_time));
+    
     ret->setProperty("waypoint_dimension", numberToString(waypoint_dimension));
     ret->setProperty("intermediate_waypoints", numberToString(intermediate_waypoints));
     ret->setProperty("altitude_levels", boolToString(altitude_levels));

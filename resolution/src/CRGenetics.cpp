@@ -522,7 +522,7 @@ void CRGenetics::setGeneticOperators(GARealGenome &genome)
 
 void CRGenetics::customEvolution(resolution::CRAlgorithmStatistics& ret, timeval& t1, bool initialize)
 {
-  GeneticConfig &config = dynamic_cast<GeneticConfig&>(* (this->config));
+  GeneticConfig &c= dynamic_cast<GeneticConfig&>(* (this->config));
   timeval t2;
   vector<EvolutionData> ev_data;
   cout << "CRGenetics::run --> Letting the algorithm evolve.\n";
@@ -530,8 +530,9 @@ void CRGenetics::customEvolution(resolution::CRAlgorithmStatistics& ret, timeval
     algorithm->initialize(); 
   }
   iterations = 0;
-  while(iterations < config.generations){
-    if (config.debug) {
+  bool end_time = false; 
+  while(iterations < c.generations && !end_time){
+    if (c.debug) {
       cout << "CRGenetics::run --> Iteration " << iterations << ".\n";
     }
     algorithm->step();
@@ -543,11 +544,17 @@ void CRGenetics::customEvolution(resolution::CRAlgorithmStatistics& ret, timeval
     current.plan = getGeneticFlightPlan(curr_best);
     ev_data.push_back(current);
     iterations++;
+    
+    // See if the time has expired
+    gettimeofday(&t2, NULL);
+    if (c.max_time > 0.0 && functions::calculateLapseTime(t1, t2) > c.max_time) {
+      end_time = true;
+    }
   }
   
-  if(config.export_evolution) {
+  if(c.export_evolution) {
     // Exporting the results of evolution
-    saveEvolutionData(config.evolution_file ,ev_data);
+    saveEvolutionData(c.evolution_file ,ev_data);
   }
   
   ret.setEvolutionData(ev_data);

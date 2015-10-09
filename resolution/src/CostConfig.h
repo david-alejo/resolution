@@ -54,6 +54,8 @@ class CostConfig:public AlgorithmConfig
 	// Sampling stuff
 	int population; // Number of individuals
 	int generations; // Number of times that a generation is defined
+	double max_time; // Max allowed time to the simulation
+	
 	int intermediate_waypoints; // Used when adding waypoints not when modifying trajectory
 	int waypoint_dimension; // 2: 2D exploration. 3: 3D exploration (considers z). 0: Only speed planning (time_exploration must be true)
 	bool altitude_levels; // The exploration in z axis is discretized according to the altitude_step field

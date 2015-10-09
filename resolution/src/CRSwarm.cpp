@@ -27,22 +27,22 @@ CRAlgorithm* CRSwarm::createFromBlock(ParseBlock& block) const
 {
 	
     CRSwarm* ret = new CRSwarm();
-		Checker *check = getAlgorithmChecker();
-		
-		try {
-			block.checkUsing(check);
-			SwarmConfig swarm_conf;
-			AlgorithmConfig *conf = swarm_conf.createAlgorithmConfig(block["config"]);
-			ret->init(block, conf);
-		} catch (exception &e) {
-			cerr << "CRSwarm::createFromBlock --> error while loading data from block\n";
-			delete check;
-			throw(e);
-		}
-		
-		delete check;
-		
-		return ret;
+    Checker *check = getAlgorithmChecker();
+    
+    try {
+	    block.checkUsing(check);
+	    SwarmConfig swarm_conf;
+	    AlgorithmConfig *conf = swarm_conf.createAlgorithmConfig(block["config"]);
+	    ret->init(block, conf);
+    } catch (exception &e) {
+	    cerr << "CRSwarm::createFromBlock --> error while loading data from block\n";
+	    delete check;
+	    throw(e);
+    }
+    
+    delete check;
+    
+    return ret;
 }
 
 
@@ -153,7 +153,8 @@ CRAlgorithmStatistics CRSwarm::execute()
       
       // Expand the geometries
       sim->expandGeometries(config.geometry_expansion);
-      for (iteration = 0; iteration < config.generations; iteration++) {
+      bool end_time = false;
+      for (iteration = 0; iteration < config.generations && !end_time; iteration++) {
 	curr_best = algorithm.getBestPosition();
 	if (config.debug) {
 		cout << "CRSwarm::run --> Iteration " << iteration << ". Best cost: " << algorithm.getBestCost() << "\n";
@@ -167,6 +168,11 @@ CRAlgorithmStatistics CRSwarm::execute()
 	current.plan = getFlightPlan(curr_best);
 	updateDeltaETA(current);
 	ev_data.push_back(current);
+	
+	// See if the time has expired
+	if (config.max_time > 0.0 && functions::calculateLapseTime(t1, t2) > config.max_time) {
+	  end_time = true;
+	}
       }
       
       // Generate statistics
