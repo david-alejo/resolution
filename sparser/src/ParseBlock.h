@@ -5,11 +5,8 @@
 using std::ostream;
 
 #include <list>
-using std::list;
 
-#include "mapUtil.h"
 #include <map>
-using std::map;
 
 
 #include "ParseContext.h"
@@ -23,8 +20,8 @@ class ParseBlock: public ParseContext {
 
 	friend ostream& operator<<( ostream& os, ParseBlock& b);
 public:
-	typedef list<ParseBlock *> Blocks;
-	typedef list<ParseProperty *> Properties;
+	typedef std::list<ParseBlock *> Blocks;
+	typedef std::list<ParseProperty *> Properties;
 
 
 	ParseBlock( ParseContext *back = NULL, const std::string name = std::string(""));
@@ -37,22 +34,22 @@ public:
 	// Accessors
 
 	/// \brief Returns the first occurence of the property, or throws std::runtime_error if none
-	ParseProperty& operator() ( const char *);
+	ParseProperty& operator() ( const std::string  &name);
 
 	/// \brief Returns the first occurence of the block, or throws std::runtime_error if none
-	ParseBlock& operator[]( const char * );
+	ParseBlock& operator[]( const std::string& name);
 
 	/// \brief Returns the list of properties with a given name or NULL
-	Properties *getProperties( const char * ) const;
+	Properties *getProperties( const std::string &) const;
 
 	/// \brief Returns the list of blocks with a given name or NULL
-	Blocks *getBlocks( const char * ) const;
+	Blocks *getBlocks( const std::string &) const;
 
 	/// \brief Returns true if the blocks exists
-	bool hasBlock( const char *name ) const;
+	bool hasBlock( const std::string& name ) const;
 
 	/// \brief Returns true if the propertie exists
-	bool hasProperty( const char *name ) const;
+	bool hasProperty( const std::string& name ) const;
 	
 	virtual ParseContext *setProperty( const std::string& name, const std::string& value );
 	
@@ -62,8 +59,8 @@ public:
 	void checkUsing( Checker *checker ) const;
 
 protected:
-	typedef map<const char *, Properties *, strCmp> PropertyMap;
-	typedef map<const char *, Blocks *, strCmp> BlockMap;
+	typedef std::map<std::string, Properties *> PropertyMap;
+	typedef std::map<std::string, Blocks *> BlockMap;
 
 	virtual ParseContext *ParseBlockOpen( const std::string& name );
 	virtual ParseContext *ParseBlockClose();

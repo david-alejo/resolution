@@ -36,13 +36,13 @@ ParseBlock::ParseBlock(ParseBlock &p) {
 	BlockMap::iterator bm_it = p.blockMap.begin();
 	for ( ; bm_it != p.blockMap.end() ; bm_it ++) {
 		Blocks::iterator block_it = bm_it->second->begin();
-		const char *cname = bm_it->first;
-		blockMap.insert( make_pair( cname, new Blocks ) ); // Insert a new list
+		std::string name = bm_it->first;
+		blockMap.insert( make_pair( name, new Blocks ) ); // Insert a new list
 		
 		for ( ; block_it != bm_it->second->end(); block_it++) {
 			ParseBlock *b = new ParseBlock ( **block_it);
 			b -> back = this; // Very important!! Change its back attribute to this 
-			blockMap[cname]->push_back( b );
+			blockMap[name]->push_back( b );
 		}
 		
 	}
@@ -51,12 +51,12 @@ ParseBlock::ParseBlock(ParseBlock &p) {
 	PropertyMap::iterator pm_it = p.propertyMap.begin();
 	for ( ; pm_it != p.propertyMap.end() ; pm_it ++) {
 		Properties::iterator property_it = pm_it->second->begin();
-		const char *cname = pm_it->first;
-		propertyMap.insert( make_pair( cname, new Properties ) ); // Insert a new list
+		const std::string name = pm_it->first;
+		propertyMap.insert( make_pair( name, new Properties ) ); // Insert a new list
 		
 		for ( ; property_it != pm_it->second->end(); property_it++) {
 			ParseProperty *p = new ParseProperty ( **property_it);
-			propertyMap[cname]->push_back( p );
+			propertyMap[name]->push_back( p );
 		}
 	}
 	
@@ -105,41 +105,41 @@ ParseBlock::~ParseBlock() {
 
 // Accessors *****************************
 
-ParseProperty& ParseBlock::operator() ( const char * name) {
+ParseProperty& ParseBlock::operator() ( const string& name) {
 	Properties *p = propertyMap[ name ];
 
 	if (!p) {
 		char *s = new char[255];
-		sprintf( s, "ParseBlock::Property %s NOT found in block %s.", name, this->name.c_str() );
+		sprintf( s, "ParseBlock::Property %s NOT found in block %s.", name.c_str(), this->name.c_str() );
 		throw new std::runtime_error( s );
 	}
 	
 	return *(*(p->begin()));
 }
 
-ParseBlock& ParseBlock::operator[]( const char *name ) {
+ParseBlock& ParseBlock::operator[]( const string& name) {
 
 	Blocks *p = blockMap[ name ];
 
 	if (!p) {
 		char *s = new char[255];
-		sprintf( s, "ParseBlock::Block %s NOT found in block %s.", name, this->name.c_str() );
+		sprintf( s, "ParseBlock::Block %s NOT found in block %s.", name.c_str(), this->name.c_str() );
 		throw new std::runtime_error( s );
 	}
 	
 	return *(*(p->begin()));
 }
 
-bool ParseBlock::hasBlock( const char *name ) const {
+bool ParseBlock::hasBlock( const string &name ) const {
 	return (  blockMap.find(name) != blockMap.end() );
 }
 
-bool ParseBlock::hasProperty( const char *name ) const {
+bool ParseBlock::hasProperty( const string &name ) const {
 	return (  propertyMap.find(name) != propertyMap.end() );
 
 }
 
-ParseBlock::Properties *ParseBlock::getProperties( const char *name ) const {
+ParseBlock::Properties *ParseBlock::getProperties( const string& name) const {
 	ParseBlock::Properties *ret = NULL;
 	if ( hasProperty(name)) {
 		ret = propertyMap.find(name)->second;
@@ -148,7 +148,7 @@ ParseBlock::Properties *ParseBlock::getProperties( const char *name ) const {
 	return ret;
 }
 
-ParseBlock::Blocks *ParseBlock::getBlocks( const char *name ) const {
+ParseBlock::Blocks *ParseBlock::getBlocks( const string& name) const {
 	ParseBlock::Blocks *ret = NULL;
 	
 	if ( hasBlock(name) ) {
@@ -186,13 +186,13 @@ ParseContext *ParseBlock::ParseBlockClose() {
 
 ParseContext *ParseBlock::setProperty( const std::string& name, const std::string& value ) {
 
-	const char * cname = name.c_str();
+// 	const char * cname = name.c_str();
 
-	if ( propertyMap.count( cname ) == 0 ) {
-		propertyMap.insert( make_pair( cname, new Properties ) );
+	if ( propertyMap.count( name ) == 0 ) {
+		propertyMap.insert( make_pair( name, new Properties ) );
 	}
 
-	propertyMap[cname]->push_back( new ParseProperty( name, value ) );
+	propertyMap[name]->push_back( new ParseProperty( name, value ) );
 	
 	return this;
 }

@@ -1,12 +1,12 @@
 project(sparser)
 cmake_minimum_required(VERSION 2.6)
-
-SET(CMAKE_BUILD_TYPE Release)
+SET(CMAKE_BUILD_TYPE Debug)
 
 include_directories(src)
 
 add_subdirectory(src)
 
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
 
 set(Boost_LIBRARIES -lboost_regex)
 

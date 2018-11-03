@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 using std::make_pair;
-
+using std::string;
 // OneOrMore check implementation
 
 // Clone function
@@ -114,20 +114,34 @@ Checker::~Checker() {
 
 // Beware: The pointer Check * will be freed in the destructor!! Do not free it in the main program
 void Checker::addProperty( const char *name, Check *c) {
-	propertyChecks.insert( make_pair( name, c ));
+	propertyChecks.insert( make_pair( string(name), c ));
 }
 
 // Beware: The pointer Check * will be freed in the destructor!! Do not free it
 void Checker::addBlock( const char *name, Check *c) {
-	blockChecks.insert( make_pair( name, c ));
+	blockChecks.insert( make_pair( string(name), c ));
 }
 
 // Beware: The pointer Check * will be freed in the destructor!! Do not free it
 void Checker::addChecker( const char *name, Checker * c) {
+	checkerMap.insert( make_pair( string(name), c ));
+}
+
+void Checker::addProperty( const string &name, Check *c) {
+	propertyChecks.insert( make_pair( name, c ));
+}
+
+// Beware: The pointer Check * will be freed in the destructor!! Do not free it
+void Checker::addBlock( const string &name, Check *c) {
+	blockChecks.insert( make_pair( name, c ));
+}
+
+// Beware: The pointer Check * will be freed in the destructor!! Do not free it
+void Checker::addChecker( const string &name, Checker * c) {
 	checkerMap.insert( make_pair( name, c ));
 }
 
-std::string Checker::prependContext( std::runtime_error& e, const char *name ) {
+std::string Checker::prependContext( std::runtime_error& e, const string &name ) {
 	std::string s = "\\";
 	s.append( name );
 	s.append( e.what() );
@@ -138,7 +152,7 @@ void Checker::apply( const ParseBlock *block ) {
 	
 
 	for (CheckMap::iterator i = propertyChecks.begin(); i != propertyChecks.end(); i++ ) {
-		const char *name = i->first;
+		const std::string name = i->first;
 //		std::cout << "check property " << name << "\n";
 		try {
 			(*(i->second))( block->getProperties( name ) );
@@ -150,7 +164,7 @@ void Checker::apply( const ParseBlock *block ) {
 	
 
 	for (CheckMap::iterator i = blockChecks.begin(); i != blockChecks.end(); i++ ) {
-		const char *name = i->first;
+		const string name = i->first;
 		ParseBlock::Blocks *innerBlocks = block->getBlocks( name );
 
 //s		std::cout << "check block " << name << "\n";

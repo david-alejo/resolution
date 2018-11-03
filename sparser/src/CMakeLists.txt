@@ -4,6 +4,8 @@ SET(SPARSER_HEADERS src/all.h src/Checker.h src/mapUtil.h src/ParseBlock.h src/P
 
 SET(SPARSER_SOURCE src/Checker.cpp src/ParseBlock.cpp src/ParseProperty.cpp src/Parser.cpp src/StringUtil.cpp PARENT_SCOPE) 
 
+set(CMAKE_BUILD_TYPE Debug)
+
 ## Multiplatform stuff
 SET(INSTALL_LOCATION /usr/local/)
 SET(BUILD_TYPE SHARED)

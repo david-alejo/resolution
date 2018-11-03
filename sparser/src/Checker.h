@@ -3,9 +3,6 @@
 
 
 #include <map>
-using std::map;
-#include "mapUtil.h"
-
 #include <stdexcept>
 
 #include "ParseBlock.h"
@@ -62,14 +59,18 @@ public:
 	void addProperty( const char *name, Check *);
 	void addBlock( const char *name, Check *);
 	void addChecker( const char *name, Checker *);
+	
+	void addProperty(const std::string &name, Check *);
+	void addBlock( const std::string &name, Check *);
+	void addChecker( const std::string &name, Checker *);
 		
 	void apply( const ParseBlock *block );
 
 protected:
-	std::string prependContext( std::runtime_error& e, const char *name );
+	std::string prependContext( std::runtime_error& e, const std::string &name );
 
-	typedef map< const char *, Check *, strCmp> CheckMap;
-	typedef map< const char *, Checker *, strCmp> CheckerMap;
+	typedef std::map< const std::string, Check *> CheckMap;
+	typedef std::map< const std::string, Checker *> CheckerMap;
 
 	CheckMap blockChecks;
 	CheckMap propertyChecks;

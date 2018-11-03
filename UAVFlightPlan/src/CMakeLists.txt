@@ -4,6 +4,8 @@ SET(FP_HEADERS src/earthlocation.h src/general.h src/UAVFlightPlan.h src/UAVObst
 
 SET(FP_SOURCE src/earthlocation.cpp src/general.cpp src/UAVFlightPlan.cpp src/UAVObstacle.cpp src/UAVTrajectory.cpp src/UAVWaypoint.cpp PARENT_SCOPE) 
 
+set(CMAKE_BUILD_TYPE Debug)
+
 ## Multiplatform stuff
 if (WIN32)
   if (MINGW)

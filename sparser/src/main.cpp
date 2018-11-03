@@ -56,11 +56,11 @@ int main() {
 		// el operador () accede a las propiedades 
 
 		if ( config["capture"]["source"]["format"].hasProperty( "width" ) ) {
-			cout << config["capture"]["source"]["format"]("width").as<int>() << "\n";
+			cout << "Got the \\capture\\source\\format\\width property. Content: " << config["capture"]["source"]["format"]("width").as<int>() << "\n";
 		}
 		
-		cout << config["capture"]["source"]["format"]("width").as<const char *>() << "\n";
-		
+// 		cout << config["capture"]["source"]["format"]("width").as<const char *>() << "\n";
+		cout << "Testing the vector capture: \\capture\\vector" << endl;
 		std::vector<double> vec = config["capture"]("vector").as<vector<double> >();
 		
 		cout << "Vector size = " << vec.size() << "\tVector = ";
