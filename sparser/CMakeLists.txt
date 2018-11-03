@@ -40,6 +40,6 @@ target_link_libraries(sparser ${Boost_LIBRARIES})
 
 
 
-# General tests (P. Soriano)
+# General tests (P. Soriano + D. Alejo)
  add_executable(sparser_test src/main.cpp )
  target_link_libraries(sparser_test sparser ${Boost_LIBRARIES})

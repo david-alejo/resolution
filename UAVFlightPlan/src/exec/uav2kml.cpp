@@ -12,7 +12,7 @@ using std::endl;
 int main(int argc, char **argv) {
   ArgumentData arg(argc, argv);
   
-  if (argc < 2) {
+  if (argc < 3) {
     cout << "Use: " << arg[0] << " <input_file> <output_file>\n";
     return -1;
   }
