@@ -1,5 +1,6 @@
 #include "ModelSimpleUAVPolarWind.h"
 #include <functions/RandomNumberGenerator.h>
+#include <cmath>
 
 using namespace std;
 
@@ -213,7 +214,7 @@ void ModelSimpleUAVPolarWind::getWeibullParameters()
   double &std_dev = parameter[8];
   if (k < 0.0 || c < 0.0) {
     k = pow(mean / std_dev, 1.086);
-    c = mean / boost::math::tgamma(1 + k);
+    c = mean / std::tgamma(1 + k);
   }
   cout << "ModelSimpleUAVPolarWind::getWeibullParameters. k = " << k << "\t c = " << c << endl;
 }

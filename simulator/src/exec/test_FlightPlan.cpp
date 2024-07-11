@@ -4,6 +4,8 @@
 #include <boost/lexical_cast.hpp>
 #include <iostream>
 
+#include <boost/math/special_functions/next.hpp>
+
 using namespace simulator;
 using namespace functions;
 using namespace std;
@@ -26,21 +28,21 @@ int main(int argc, char **argv) {
     arg.getOption("export_reference", v_s);
     if (v_s.size() >= 3) {
       try {
-	vector<Point3D> traj = fp.getReferenceTrajectory(lexical_cast<double>(v_s[0]),lexical_cast<double>(v_s[1]));
+        vector<Point3D> traj = fp.getReferenceTrajectory(lexical_cast<double>(v_s[0]),lexical_cast<double>(v_s[1]));
       
       
       Point3D p;
       ostringstream os;
       for (unsigned int i = 0; i < traj.size(); i++) {
-	os << traj[i].toString(false) << endl;
+        os << traj[i].toString(false) << endl;
       }
       if (!functions::writeStringToFile(v_s[2], os.str())) {
-	cerr << "Error while writing the reference trajectory.\n";
+        cerr << "Error while writing the reference trajectory.\n";
       } else{
-	cout << "Reference trajectory successfully written.\n";
+        cout << "Reference trajectory successfully written.\n";
       }
       } catch (exception &e) {
-	cerr << "Could not interpret the command line associated to export_reference \n";
+        cerr << "Could not interpret the command line associated to export_reference \n";
       }
     }
   }

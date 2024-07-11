@@ -91,7 +91,10 @@ class ParticleFilter{
   //!Hiding Copy constructor
   ParticleFilter (const ParticleFilter &that){};
   //! Hiding assignment operator
-  ParticleFilter & operator = (const ParticleFilter &that){};
+  ParticleFilter & operator = (const ParticleFilter &that){
+    *this = that;
+    return *this;
+  }
   
   //! @brief Gets the sparser checker to verify the integrity of the data
   //! @return The checker.

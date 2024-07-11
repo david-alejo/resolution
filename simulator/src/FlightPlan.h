@@ -26,7 +26,8 @@
 #include <functions/FormattedTime.h>
 
 #include <sparser/all.h>
-
+#include <boost/math/special_functions/gamma.hpp>
+#include <boost/math/tools/promotion.hpp>
 
 namespace simulator {
 class FlightPlan:public std::vector<functions::Point3D>
@@ -198,7 +199,7 @@ class FlightPlan:public std::vector<functions::Point3D>
     void init();
     
     double cruise_speed;
-    static const double default_cruise_speed = 20.0;
+    static constexpr double default_cruise_speed = 20.0;
 };
 
 }

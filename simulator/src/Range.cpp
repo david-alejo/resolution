@@ -26,7 +26,7 @@ SimpleRange::SimpleRange(double low, double high)
 SimpleRange SimpleRange::intersect(const SimpleRange& other) const
 {
   SimpleRange aux;
-  if (other.first <= first || isnan(other.first)) {
+  if (other.first <= first || std::isnan(other.first)) {
     if (other.second > first) {
       aux.first = first;
       aux.second = functions::minimum(other.second, second);

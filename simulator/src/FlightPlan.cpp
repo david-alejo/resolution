@@ -85,7 +85,7 @@ bool FlightPlan::load(const std::string& fileName) throw()
 	} catch (std::runtime_error &e) {
 		std::cout << "FlightPlan::load --> Error while loading data from file: ";
 		std::cout << e.what() << std::endl;
-		throw(e);
+		ret_value = false;
 	}
     
 	return ret_value;

@@ -72,6 +72,8 @@ int ModelQuad::runOneStep(bool first_state)
 	state[2]+= h_dot * ts;	// h
 	state[3]+= phi_dot * ts; // gamma
 	state[4]+= v_dot * ts; // v
+
+  return 0; // No error
 }
 
 ModelQuad::ModelQuad()
@@ -160,9 +162,11 @@ ModelQuad* ModelQuad::createFromFile(const std::string& fileName) const
 int ModelQuad::runNSteps(int n)
 {
   //This is trivial, but other models may have different implementations for this.
+  int n_errors = 0;
   for (int  i = 0; i < n; i++){
-    runOneStep();
+    n_errors +=runOneStep();
   }
+  return n_errors;
 }
 
 ModelQuad* ModelQuad::clone() const

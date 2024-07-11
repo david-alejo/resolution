@@ -55,3 +55,5 @@ Tag
 bog.dat
 *.mutlab*
 traj*.m
+
+*/build/*

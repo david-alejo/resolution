@@ -189,7 +189,7 @@ double Updraft::getWindSpeed() const {
   return wind_speed * (1 - inc);
 }
 
-double Updraft::updateParameters(const RealVector& new_center, double new_speed, const RealVector new_drift)
+void Updraft::updateParameters(const RealVector& new_center, double new_speed, const RealVector new_drift)
 {
   last_update.getTime();
   location = new_center;

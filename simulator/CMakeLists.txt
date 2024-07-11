@@ -9,7 +9,7 @@ SET(CMAKE_BUILD_TYPE Debug)
 include_directories(src)
 
 add_subdirectory(src)
-set (LIBRARIES functions sparser boost_regex)
+set (LIBRARIES functions sparser boost_regex boost_mpi  )
 
 ## Multiplatform stuff
 if (MINGW) 
@@ -52,7 +52,7 @@ target_link_libraries(simulator ${LIBRARIES})
  target_link_libraries(test_simulator simulator ${LIBRARIES})
 
 # CD test (Mut)
-add_executable(CD_test src/exec/test_CD.cpp )
+ add_executable(CD_test src/exec/test_CD.cpp )
  target_link_libraries(CD_test simulator ${LIBRARIES})
 
 # Range test (Chur)

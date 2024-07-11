@@ -45,13 +45,17 @@ int ModelSimpleQuad::runOneStep(bool first_state){
 	state[0]+= x_dot * ts;	// x
 	state[1]+= y_dot * ts;	// y
 	state[2]+= h_dot * ts;	// h
+
+  return 0; // No errors
 }
 
 int ModelSimpleQuad::runNSteps(int n){
 	//This is trivial, but other models may have different implementations for this.
+  int n_errors = 0;
 	for (int  i = 0; i < n; i++){
-	  runOneStep();
+	  n_errors += runOneStep();
 	}
+  return n_errors;
 }
 ModelSimpleQuad* ModelSimpleQuad::create(const std::vector< double >& _parameter, const std::vector< double >& _state, const std::vector< double >& _control) const{
   ModelSimpleQuad *ret= new ModelSimpleQuad();

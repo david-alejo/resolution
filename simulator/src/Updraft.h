@@ -25,12 +25,13 @@ public:
   
   inline double getMaxHeight() const {return max_height;}
   
-  double setWindSpeed(double new_speed) { 
+  void setWindSpeed(double new_speed) { 
     wind_speed = new_speed;
+
   }
   
   //! @brief Updates parameters and catches the modification date.
-  double updateParameters(const functions::RealVector &new_center, double new_speed, const functions::RealVector new_drift);
+  void updateParameters(const functions::RealVector &new_center, double new_speed, const functions::RealVector new_drift);
   
 protected:
   
